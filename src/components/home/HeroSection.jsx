@@ -2,23 +2,58 @@
 
 import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { slides } from "@/lib/data"; // Adjust this path based on your project structure
 import { useRouter } from "next/navigation";
 
-// This solution uses only HTML elements
 const HeroSection = () => {
+  // Hardcoded slides for simplicity
+  const slides = [
+    {
+      image: "/images/001_1.jpg",
+      title: "Luxor Hand Knotted Rugs",
+      description: "Luxury hand-knotted rugs are one of the most sought-after decor items due to their sheer elegance and opulence.",
+      cta: "Explore Collection",
+      link: "/products/hand-knotted",
+    },
+    {
+      image: "/images/008_1.jpg",
+      title: "Hand Knotted Rugs",
+      description: "Hand knotted rugs are also known for their luxurious feel. The intricate design and soft pile of the rug can add elegance and sophistication to any space.",
+      cta: "View Modern Series",
+      link: "/products/hand-knotted",
+    },
+    {
+      image: "/images/luxury_defined.jpeg",
+      title: "Wall to Wall Carpets",
+      description: "Experience the perfect harmony of tradition and innovation in every thread.",
+      cta: "Discover More",
+      link: "/luxury-collection",
+    },
+    {
+      image: "/images/hand_tuft.jpeg",
+      title: "Hand Tufted Rugs",
+      description: "Experience the perfect harmony of tradition and innovation in every thread.",
+      cta: "Discover More",
+      link: "/products/hand-tufted",
+    },
+    {
+      image: "/images/002_1.jpg",
+      title: "Hand tufted Carpets",
+      description: "Hand tufted carpets come in various shapes, sizes, and designs. They can be made from a wide range of materials.",
+      cta: "Discover More",
+      link: "/products/hand-tufted",
+    },
+  ];
+  
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const router = useRouter();
 
+  // Auto-advance slides
   useEffect(() => {
-    // Log the image paths to diagnose issues
-    console.log("Available slides:", slides);
-    slides.forEach((slide, index) => {
-      console.log(`Slide ${index} desktop image:`, slide.desktop.image);
-      console.log(`Slide ${index} mobile image:`, slide.mobile.image);
-    });
-  }, []);
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [slides.length]);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -28,124 +63,131 @@ const HeroSection = () => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
-  useEffect(() => {
-    let timer;
-    if (isAutoPlaying) {
-      timer = setInterval(nextSlide, 5000);
-    }
-    return () => clearInterval(timer);
-  }, [isAutoPlaying]);
-
   const handleClick = (link) => {
     if (link) {
       router.push(link);
     }
   };
 
-  // Get current slide for cleaner code
+  // Current slide data
   const currentSlideData = slides[currentSlide];
 
   return (
-    <div className="relative h-[280px] md:h-[550px] overflow-hidden group">
-      {/* Direct approach with inline background styles */}
-      <div 
-        className="absolute inset-0 hidden md:block"
-        style={{
-          backgroundImage: `url('${currentSlideData.desktop.image}')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}
-      ></div>
-      
-      <div 
-        className="absolute inset-0 block md:hidden"
-        style={{
-          backgroundImage: `url('${currentSlideData.mobile.image}')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}
-      ></div>
-
-      {/* Regular img tags as backup if the background styles don't work */}
-      <img 
-        src={currentSlideData.desktop.image}
-        alt={currentSlideData.desktop.title}
-        className="absolute inset-0 w-full h-full object-cover hidden md:block z-0"
-      />
-      
-      <img 
-        src={currentSlideData.mobile.image}
-        alt={currentSlideData.mobile.title}
-        className="absolute inset-0 w-full h-full object-cover block md:hidden z-0"
-      />
-
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center z-10">
-        <div className="text-center text-white px-4 max-w-4xl">
-          {/* Desktop Title */}
-          <h1 className="hidden md:block text-4xl md:text-6xl font-bold mb-6 transform transition-all duration-700 ease-out translate-y-0 opacity-100">
-            {currentSlideData.desktop.title}
-          </h1>
-          {/* Mobile Title */}
-          <h1 className="block md:hidden text-3xl font-bold mb-4 transform transition-all duration-700 ease-out translate-y-0 opacity-100">
-            {currentSlideData.mobile.title}
-          </h1>
-          {/* Desktop Description */}
-          <p className="hidden md:block text-xl mb-8 transform transition-all duration-700 delay-100 ease-out translate-y-0 opacity-100">
-            {currentSlideData.desktop.description}
-          </p>
-          {/* Mobile Description */}
-          <p className="block md:hidden text-base mb-6 transform transition-all duration-700 delay-100 ease-out translate-y-0 opacity-100">
-            {currentSlideData.mobile.description}
-          </p>
-          <button
-            onClick={() => handleClick(currentSlideData?.link)}
-            className="group relative bg-white text-gray-900 px-4 md:px-8 py-2 md:py-3 rounded-full font-medium 
-                      overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-lg
-                      active:scale-95 text-sm md:text-base"
-          >
-            <span className="relative z-10 group-hover:text-white transition-colors duration-300">
+    <div className="relative" style={{ height: "550px" }}>
+      {/* Basic Image Container */}
+      <div style={{ position: "relative", width: "100%", height: "100%" }}>
+        <img 
+          src={currentSlideData.image}
+          alt={currentSlideData.title}
+          style={{ 
+            width: "100%", 
+            height: "100%", 
+            objectFit: "cover",
+            position: "absolute",
+            top: 0,
+            left: 0
+          }}
+        />
+        
+        {/* Dark Overlay */}
+        <div style={{ 
+          position: "absolute", 
+          top: 0, 
+          left: 0, 
+          width: "100%", 
+          height: "100%", 
+          backgroundColor: "rgba(0,0,0,0.4)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center"
+        }}>
+          {/* Content */}
+          <div style={{ textAlign: "center", color: "white", padding: "0 20px", maxWidth: "800px" }}>
+            <h1 style={{ fontSize: "2.5rem", fontWeight: "bold", marginBottom: "1rem" }}>
+              {currentSlideData.title}
+            </h1>
+            <p style={{ fontSize: "1.25rem", marginBottom: "2rem" }}>
+              {currentSlideData.description}
+            </p>
+            <button
+              onClick={() => handleClick(currentSlideData.link)}
+              style={{ 
+                backgroundColor: "white", 
+                color: "#333", 
+                padding: "10px 24px", 
+                borderRadius: "50px",
+                border: "none",
+                fontSize: "1rem",
+                fontWeight: "500",
+                cursor: "pointer"
+              }}
+            >
               {currentSlideData.cta}
-            </span>
-            <span
-              className="absolute inset-0 bg-gray-900 transform scale-x-0 group-hover:scale-x-100 
-                           transition-transform duration-300 origin-left"
-            ></span>
-          </button>
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Navigation Arrows - Hidden on mobile */}
+      {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
-        className="hidden md:block absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"
-        onMouseEnter={() => setIsAutoPlaying(false)}
-        onMouseLeave={() => setIsAutoPlaying(true)}
-        aria-label="Previous slide"
+        style={{ 
+          position: "absolute", 
+          left: "20px", 
+          top: "50%", 
+          transform: "translateY(-50%)",
+          backgroundColor: "rgba(255,255,255,0.8)",
+          borderRadius: "50%",
+          border: "none",
+          padding: "10px",
+          cursor: "pointer",
+          zIndex: 10
+        }}
       >
-        <ChevronLeft className="w-6 h-6 text-gray-800" />
+        <ChevronLeft size={24} color="#333" />
       </button>
+      
       <button
         onClick={nextSlide}
-        className="hidden md:block absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"
-        onMouseEnter={() => setIsAutoPlaying(false)}
-        onMouseLeave={() => setIsAutoPlaying(true)}
-        aria-label="Next slide"
+        style={{ 
+          position: "absolute", 
+          right: "20px", 
+          top: "50%", 
+          transform: "translateY(-50%)",
+          backgroundColor: "rgba(255,255,255,0.8)",
+          borderRadius: "50%",
+          border: "none",
+          padding: "10px",
+          cursor: "pointer",
+          zIndex: 10
+        }}
       >
-        <ChevronRight className="w-6 h-6 text-gray-800" />
+        <ChevronRight size={24} color="#333" />
       </button>
 
       {/* Slide Indicators */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+      <div style={{ 
+        position: "absolute", 
+        bottom: "20px", 
+        left: "50%", 
+        transform: "translateX(-50%)",
+        display: "flex",
+        gap: "8px",
+        zIndex: 10
+      }}>
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              currentSlide === index ? "w-8 bg-white" : "bg-white/60"
-            }`}
+            style={{ 
+              width: currentSlide === index ? "30px" : "10px", 
+              height: "10px", 
+              borderRadius: "50px", 
+              backgroundColor: currentSlide === index ? "white" : "rgba(255,255,255,0.6)",
+              border: "none",
+              padding: 0,
+              cursor: "pointer"
+            }}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
