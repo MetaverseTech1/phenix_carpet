@@ -4,44 +4,103 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
 const PageBanner = ({ title, subtitle, backgroundImage, breadcrumbs }) => {
-  return (
-    <div
-      className="relative w-full h-[40vh] min-h-[320px] flex flex-col justify-center items-center bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage }}
-    >
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+  // Extract the image path from the backgroundImage string
+  const imagePath = backgroundImage?.replace(/^url\(['"](.+)['"]\)$/, '$1') || '/images/placeholder.jpg';
 
-      {/* Content */}
-      <div className="relative z-10 text-center text-white px-4">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">{title}</h1>
-        {subtitle && (
-          <p className="text-lg md:text-xl max-w-2xl mx-auto">{subtitle}</p>
+  return (
+    <div style={{ position: "relative", width: "100%", height: "40vh", minHeight: "320px" }}>
+      {/* Direct image element with absolute positioning */}
+      <img 
+        src={imagePath}
+        alt={title}
+        style={{ 
+          width: "100%", 
+          height: "100%", 
+          objectFit: "cover",
+          position: "absolute",
+          top: 0,
+          left: 0
+        }}
+        onError={(e) => {
+          console.log('Failed to load banner image:', imagePath);
+          e.target.onerror = null;
+          e.target.src = '/images/placeholder.jpg';
+        }}
+      />
+      
+      {/* Dark overlay */}
+      <div style={{ 
+        position: "absolute", 
+        top: 0, 
+        left: 0, 
+        width: "100%", 
+        height: "100%", 
+        backgroundColor: "rgba(0,0,0,0.4)",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center"
+      }}>
+        {/* Content */}
+        <div style={{ textAlign: "center", color: "white", padding: "0 20px" }}>
+          <h1 style={{ 
+            fontSize: "2.5rem", 
+            fontWeight: "bold", 
+            marginBottom: "1rem" 
+          }}>
+            {title}
+          </h1>
+          {subtitle && (
+            <p style={{ 
+              fontSize: "1.25rem", 
+              marginBottom: "1rem" 
+            }}>
+              {subtitle}
+            </p>
+          )}
+        </div>
+        
+        {/* Breadcrumbs */}
+        {breadcrumbs && (
+          <div style={{ 
+            position: "absolute", 
+            bottom: "1.5rem", 
+            left: 0, 
+            right: 0, 
+            display: "flex", 
+            justifyContent: "center" 
+          }}>
+            <div style={{ 
+              display: "flex", 
+              alignItems: "center", 
+              gap: "8px", 
+              color: "white" 
+            }}>
+              {breadcrumbs.map((crumb, index) => (
+                <React.Fragment key={index}>
+                  {index > 0 && <ChevronRight style={{ width: "16px", height: "16px" }} />}
+                  {crumb.href ? (
+                    <Link 
+                      href={crumb.href}
+                      style={{ 
+                        color: "white", 
+                        textDecoration: "none",
+                        transition: "all 0.2s"
+                      }}
+                      onMouseOver={(e) => { e.target.style.textDecoration = "underline"; }}
+                      onMouseOut={(e) => { e.target.style.textDecoration = "none"; }}
+                    >
+                      {crumb.label}
+                    </Link>
+                  ) : (
+                    <span>{crumb.label}</span>
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
         )}
       </div>
-
-      {/* Breadcrumbs */}
-      {breadcrumbs && (
-        <div className="absolute bottom-6 left-0 right-0 flex justify-center">
-          <div className="flex items-center space-x-2 text-white text-sm">
-            {breadcrumbs.map((crumb, index) => (
-              <React.Fragment key={index}>
-                {index > 0 && <ChevronRight className="w-4 h-4" />}
-                {crumb.href ? (
-                  <Link
-                    href={crumb.href}
-                    className="hover:underline transition-all"
-                  >
-                    {crumb.label}
-                  </Link>
-                ) : (
-                  <span>{crumb.label}</span>
-                )}
-              </React.Fragment>
-            ))}
-          </div>
-        </div>
-      )}
     </div>
   );
 };

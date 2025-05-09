@@ -3,11 +3,10 @@
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import {
-  categoryDescriptions,
-  productsCategoryCollection,
-} from "@/lib/data";
-import PageBanner from "@/components/common/PageBanner";
+import Link from "next/link";
+
+// Import data directly to simplify debugging
+import { categoryDescriptions, productsCategoryCollection } from "@/lib/data";
 
 export default function ProductsPage({ params }) {
   // Use React.use to unwrap params if available, otherwise fall back to direct access
@@ -29,32 +28,87 @@ export default function ProductsPage({ params }) {
   );
 
   useEffect(() => {
-    // Log for debugging
-    console.log("Category:", normalizedCategory);
-    console.log("Filtered Products:", filteredProducts);
+    // Set loading to false once component mounts
     setLoading(false);
-  }, [normalizedCategory, filteredProducts]);
+  }, []);
 
   const handleProductClick = (productId) => {
-    // FIX: Change from /product/ to /products/ to match the folder structure
     router.push(`/products/${category}/${productId}`);
   };
 
+  // Get description from normalized category
   const description =
     categoryDescriptions[normalizedCategory] || "Description not available.";
 
+  // Function to normalize image paths
+  const normalizeImagePath = (imagePath) => {
+    if (!imagePath) return '/images/placeholder.jpg';
+    
+    // Handle external URLs
+    if (imagePath.startsWith('http')) {
+      return imagePath;
+    }
+    
+    // Remove '/public/' if it exists in the path
+    let normalizedPath = imagePath.replace('/public/', '/');
+    
+    // Make sure the path starts with a slash
+    if (!normalizedPath.startsWith('/')) {
+      normalizedPath = '/' + normalizedPath;
+    }
+    
+    return normalizedPath;
+  };
+
   return (
     <div className="min-h-screen">
-      {/* Page Banner */}
-      <PageBanner
-        title={normalizedCategory}
-        subtitle="Luxury Carpets for Premium Spaces"
-        backgroundImage="url('/images/004_1.jpg')"
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: `${normalizedCategory}` },
-        ]}
-      />
+      {/* Custom Banner Component - Using direct styling like HeroSection */}
+      <div style={{ position: "relative", width: "100%", height: "250px" }}>
+        {/* Direct image element similar to HeroSection */}
+        <img 
+          src="/images/004_1.jpg"
+          alt={`${normalizedCategory} Banner`}
+          style={{ 
+            width: "100%", 
+            height: "100%", 
+            objectFit: "cover",
+            position: "absolute",
+            top: 0,
+            left: 0
+          }}
+        />
+        
+        {/* Dark overlay for better text readability */}
+        <div style={{ 
+          position: "absolute", 
+          top: 0, 
+          left: 0, 
+          width: "100%", 
+          height: "100%", 
+          backgroundColor: "rgba(0,0,0,0.4)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center"
+        }}>
+          {/* Content */}
+          <div style={{ textAlign: "center", color: "white", padding: "0 20px" }}>
+            <h1 style={{ fontSize: "2.5rem", fontWeight: "bold", marginBottom: "0.5rem" }}>
+              {normalizedCategory}
+            </h1>
+            <p style={{ fontSize: "1.25rem", marginBottom: "1rem" }}>
+              Luxury Carpets for Premium Spaces
+            </p>
+            
+            {/* Breadcrumbs */}
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "8px" }}>
+              <Link href="/" style={{ color: "white", textDecoration: "none" }}>Home</Link>
+              <span>&gt;</span>
+              <span>{normalizedCategory}</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div className="mx-auto">
         {/* product category */}
@@ -81,22 +135,25 @@ export default function ProductsPage({ params }) {
                       onClick={() => handleProductClick(product.id)}
                       className="group bg-white cursor-pointer border border-gray-500 p-2 mb-5 rounded-md overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
                     >
-                      {/* Product Image */}
-                      <div className="relative overflow-hidden" style={{ height: '280px' }}>
-                        {/* Display image with error handling */}
+                      {/* Product Image - using inline styles like HeroSection */}
+                      <div style={{ position: "relative", width: "100%", height: "280px", overflow: "hidden" }}>
                         <img
-                          src={product.image}
+                          src={normalizeImagePath(product.image)}
                           alt={product.name}
-                          loading="lazy"
-                          className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+                          style={{ 
+                            width: "100%", 
+                            height: "100%", 
+                            objectFit: "cover",
+                            position: "absolute",
+                            top: 0,
+                            left: 0
+                          }}
                           onError={(e) => {
-                            console.error(`Error loading image: ${product.image}`);
+                            console.log('Failed to load image:', product.image);
+                            e.target.onerror = null;
                             e.target.src = '/images/placeholder.jpg'; // Fallback image
-                            e.target.onerror = null; // Prevent infinite loop
                           }}
                         />
-
-                        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-opacity duration-300" />
                       </div>
 
                       {/* Product Info */}

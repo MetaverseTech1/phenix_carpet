@@ -2,10 +2,10 @@
 "use client";
 
 import React, { useState } from "react";
-import PageBanner from "@/components/common/PageBanner";
 import { hospitalityCollection } from "@/lib/data";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const HospitalityCollection = () => {
   const router = useRouter();
@@ -41,18 +41,67 @@ const HospitalityCollection = () => {
     router.push(`/hospitality-collection/${productId}`);
   };
 
+  // Simple but effective image path normalization
+  const fixImagePath = (path) => {
+    if (!path) return '/images/placeholder.jpg';
+    if (path.startsWith('http')) return path;
+    
+    // First remove any /public/ prefix
+    path = path.replace('/public/', '/');
+    
+    // Then ensure there's a leading slash
+    return path.startsWith('/') ? path : `/${path}`;
+  };
+
   return (
     <div className="bg-white min-h-screen">
-      {/* Page Banner */}
-      <PageBanner
-        title="Hospitality Collection"
-        subtitle="Luxury Carpets for Premium Spaces"
-        backgroundImage="url('/images/001_1.jpg')"
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: "Hospitality Collection" },
-        ]}
-      />
+      {/* Custom Banner Component - Using direct styling */}
+      <div style={{ position: "relative", width: "100%", height: "250px" }}>
+        {/* Direct image element */}
+        <img 
+          src="/images/001_1.jpg"
+          alt="Hospitality Collection Banner"
+          style={{ 
+            width: "100%", 
+            height: "100%", 
+            objectFit: "cover",
+            position: "absolute",
+            top: 0,
+            left: 0
+          }}
+        />
+        
+        {/* Dark overlay for better text readability */}
+        <div style={{ 
+          position: "absolute", 
+          top: 0, 
+          left: 0, 
+          width: "100%", 
+          height: "100%", 
+          backgroundColor: "rgba(0,0,0,0.4)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center"
+        }}>
+          {/* Content */}
+          <div style={{ textAlign: "center", color: "white", padding: "0 20px" }}>
+            <h1 style={{ fontSize: "2.5rem", fontWeight: "bold", marginBottom: "0.5rem" }}>
+              Hospitality Collection
+            </h1>
+            <p style={{ fontSize: "1.25rem", marginBottom: "1rem" }}>
+              Luxury Carpets for Premium Spaces
+            </p>
+            
+            {/* Breadcrumbs */}
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "8px" }}>
+              <Link href="/" style={{ color: "white", textDecoration: "none" }}>Home</Link>
+              <span>&gt;</span>
+              <span>Hospitality Collection</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-12">
@@ -83,16 +132,26 @@ const HospitalityCollection = () => {
             <div
               key={product.id}
               onClick={() => handleProductClick(product.id)}
-              className="group bg-white cursor-pointer border border-gray-500 p-2 mb-5  rounded-md overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+              className="group bg-white cursor-pointer border border-gray-500 p-2 mb-5 rounded-md overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
             >
-              {/* Product Image */}
-              <div className="relative overflow-hidden">
+              {/* Product Image - using explicitly positioned img */}
+              <div style={{ position: "relative", width: "100%", height: "240px", overflow: "hidden" }}>
                 <img
-                  src={product.image}
+                  src={fixImagePath(product.image)}
                   alt={product.name}
-                  className="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-300"
+                  style={{ 
+                    width: "100%", 
+                    height: "100%", 
+                    objectFit: "cover",
+                    position: "absolute",
+                    top: 0,
+                    left: 0
+                  }}
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = '/images/placeholder.jpg';
+                  }}
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-opacity duration-300" />
               </div>
 
               {/* Product Info */}
@@ -110,7 +169,7 @@ const HospitalityCollection = () => {
           <button
             onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}
             disabled={currentPage === 1}
-            className="p-2 rounded-lg bg-gray-200  text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-300 transition-colors duration-300 flex items-center justify-center"
+            className="p-2 rounded-lg bg-gray-200 text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-300 transition-colors duration-300 flex items-center justify-center"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
@@ -135,7 +194,7 @@ const HospitalityCollection = () => {
               handlePageChange(Math.min(currentPage + 1, totalPages))
             }
             disabled={currentPage === totalPages}
-            className="p-2 rounded-lg bg-gray-200  text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-300 transition-colors duration-300 flex items-center justify-center"
+            className="p-2 rounded-lg bg-gray-200 text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-300 transition-colors duration-300 flex items-center justify-center"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
