@@ -4,6 +4,49 @@ import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 
+// Add CSS for responsiveness
+const responsiveStyles = `
+@media (max-width: 768px) {
+  .hero-container {
+    height: 350px !important;
+  }
+  
+  .hero-title {
+    font-size: 1.8rem !important;
+  }
+  
+  .hero-description {
+    font-size: 1rem !important;
+  }
+  
+  .hero-button {
+    padding: 8px 20px !important;
+    font-size: 0.9rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-container {
+    height: 300px !important;
+  }
+  
+  .hero-title {
+    font-size: 1.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  .hero-description {
+    font-size: 0.875rem !important;
+    margin-bottom: 1.25rem !important;
+  }
+  
+  .hero-button {
+    padding: 6px 16px !important;
+    font-size: 0.8rem !important;
+  }
+}
+`;
+
 const HeroSection = () => {
   // Hardcoded slides for simplicity
   const slides = [
@@ -47,6 +90,17 @@ const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const router = useRouter();
 
+  // Debug image loading
+  useEffect(() => {
+    console.log("Current slide image path:", slides[currentSlide].image);
+    
+    // Check if image exists
+    const img = new Image();
+    img.onload = () => console.log("Image loaded successfully");
+    img.onerror = (e) => console.error("Image failed to load:", e);
+    img.src = slides[currentSlide].image;
+  }, [currentSlide]);
+
   // Auto-advance slides
   useEffect(() => {
     const timer = setInterval(() => {
@@ -73,126 +127,132 @@ const HeroSection = () => {
   const currentSlideData = slides[currentSlide];
 
   return (
-    <div className="relative" style={{ height: "550px" }}>
-      {/* Basic Image Container */}
-      <div style={{ position: "relative", width: "100%", height: "100%" }}>
-        <img 
-          src={currentSlideData.image}
-          alt={currentSlideData.title}
-          style={{ 
+    <>
+      {/* Inject responsive styles */}
+      <style jsx global>{responsiveStyles}</style>
+      
+      <div className="relative hero-container" style={{ height: "550px" }}>
+        {/* Basic Image Container */}
+        <div style={{ position: "relative", width: "100%", height: "100%" }}>
+          <img 
+            src={currentSlideData.image}
+            alt={currentSlideData.title}
+            style={{ 
+              width: "100%", 
+              height: "100%", 
+              objectFit: "cover",
+              position: "absolute",
+              top: 0,
+              left: 0
+            }}
+          />
+          
+          {/* Dark Overlay */}
+          <div style={{ 
+            position: "absolute", 
+            top: 0, 
+            left: 0, 
             width: "100%", 
             height: "100%", 
-            objectFit: "cover",
-            position: "absolute",
-            top: 0,
-            left: 0
-          }}
-        />
-        
-        {/* Dark Overlay */}
-        <div style={{ 
-          position: "absolute", 
-          top: 0, 
-          left: 0, 
-          width: "100%", 
-          height: "100%", 
-          backgroundColor: "rgba(0,0,0,0.4)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center"
-        }}>
-          {/* Content */}
-          <div style={{ textAlign: "center", color: "white", padding: "0 20px", maxWidth: "800px" }}>
-            <h1 style={{ fontSize: "2.5rem", fontWeight: "bold", marginBottom: "1rem" }}>
-              {currentSlideData.title}
-            </h1>
-            <p style={{ fontSize: "1.25rem", marginBottom: "2rem" }}>
-              {currentSlideData.description}
-            </p>
-            <button
-              onClick={() => handleClick(currentSlideData.link)}
-              style={{ 
-                backgroundColor: "white", 
-                color: "#333", 
-                padding: "10px 24px", 
-                borderRadius: "50px",
-                border: "none",
-                fontSize: "1rem",
-                fontWeight: "500",
-                cursor: "pointer"
-              }}
-            >
-              {currentSlideData.cta}
-            </button>
+            backgroundColor: "rgba(0,0,0,0.4)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center"
+          }}>
+            {/* Content */}
+            <div style={{ textAlign: "center", color: "white", padding: "0 20px", maxWidth: "800px" }}>
+              <h1 className="hero-title" style={{ fontSize: "2.5rem", fontWeight: "bold", marginBottom: "1rem" }}>
+                {currentSlideData.title}
+              </h1>
+              <p className="hero-description" style={{ fontSize: "1.25rem", marginBottom: "2rem" }}>
+                {currentSlideData.description}
+              </p>
+              <button
+                onClick={() => handleClick(currentSlideData.link)}
+                className="hero-button"
+                style={{ 
+                  backgroundColor: "white", 
+                  color: "#333", 
+                  padding: "10px 24px", 
+                  borderRadius: "50px",
+                  border: "none",
+                  fontSize: "1rem",
+                  fontWeight: "500",
+                  cursor: "pointer"
+                }}
+              >
+                {currentSlideData.cta}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Navigation Arrows */}
-      <button
-        onClick={prevSlide}
-        style={{ 
-          position: "absolute", 
-          left: "20px", 
-          top: "50%", 
-          transform: "translateY(-50%)",
-          backgroundColor: "rgba(255,255,255,0.8)",
-          borderRadius: "50%",
-          border: "none",
-          padding: "10px",
-          cursor: "pointer",
-          zIndex: 10
-        }}
-      >
-        <ChevronLeft size={24} color="#333" />
-      </button>
-      
-      <button
-        onClick={nextSlide}
-        style={{ 
-          position: "absolute", 
-          right: "20px", 
-          top: "50%", 
-          transform: "translateY(-50%)",
-          backgroundColor: "rgba(255,255,255,0.8)",
-          borderRadius: "50%",
-          border: "none",
-          padding: "10px",
-          cursor: "pointer",
-          zIndex: 10
-        }}
-      >
-        <ChevronRight size={24} color="#333" />
-      </button>
+        {/* Navigation Arrows */}
+        <button
+          onClick={prevSlide}
+          style={{ 
+            position: "absolute", 
+            left: "20px", 
+            top: "50%", 
+            transform: "translateY(-50%)",
+            backgroundColor: "rgba(255,255,255,0.8)",
+            borderRadius: "50%",
+            border: "none",
+            padding: "10px",
+            cursor: "pointer",
+            zIndex: 10
+          }}
+        >
+          <ChevronLeft size={24} color="#333" />
+        </button>
+        
+        <button
+          onClick={nextSlide}
+          style={{ 
+            position: "absolute", 
+            right: "20px", 
+            top: "50%", 
+            transform: "translateY(-50%)",
+            backgroundColor: "rgba(255,255,255,0.8)",
+            borderRadius: "50%",
+            border: "none",
+            padding: "10px",
+            cursor: "pointer",
+            zIndex: 10
+          }}
+        >
+          <ChevronRight size={24} color="#333" />
+        </button>
 
-      {/* Slide Indicators */}
-      <div style={{ 
-        position: "absolute", 
-        bottom: "20px", 
-        left: "50%", 
-        transform: "translateX(-50%)",
-        display: "flex",
-        gap: "8px",
-        zIndex: 10
-      }}>
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentSlide(index)}
-            style={{ 
-              width: currentSlide === index ? "30px" : "10px", 
-              height: "10px", 
-              borderRadius: "50px", 
-              backgroundColor: currentSlide === index ? "white" : "rgba(255,255,255,0.6)",
-              border: "none",
-              padding: 0,
-              cursor: "pointer"
-            }}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
+        {/* Slide Indicators */}
+        <div style={{ 
+          position: "absolute", 
+          bottom: "20px", 
+          left: "50%", 
+          transform: "translateX(-50%)",
+          display: "flex",
+          gap: "8px",
+          zIndex: 10
+        }}>
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              style={{ 
+                width: currentSlide === index ? "30px" : "10px", 
+                height: "10px", 
+                borderRadius: "50px", 
+                backgroundColor: currentSlide === index ? "white" : "rgba(255,255,255,0.6)",
+                border: "none",
+                padding: 0,
+                cursor: "pointer"
+              }}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
