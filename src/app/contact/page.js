@@ -1,11 +1,13 @@
 'use client';
 
-import React from "react";
-import { Phone, Mail, MapPin, Clock, Send, MessageSquare } from "lucide-react";
+import React, { useState } from "react";
+import { Phone, Mail, MapPin, Clock, Send, MessageSquare, ChevronDown, ChevronUp, HelpCircle } from "lucide-react";
 import PageBanner from "@/components/common/PageBanner";
 import Image from "next/image";
 
 const ContactPage = () => {
+  const [openFaq, setOpenFaq] = useState(null);
+
   const contactInfo = [
     {
       icon: <Phone className="w-6 h-6" />,
@@ -39,10 +41,41 @@ const ContactPage = () => {
     },
   ];
 
+  const faqs = [
+    {
+      question: "How often should I deep clean my rug?",
+      answer: "For most rugs, a deep cleaning is recommended every 12 to 18 months. However, high-traffic areas or homes with pets, kids, or allergies may benefit from more frequent cleanings every 6 to 12 months to maintain cleanliness and prolong the rug's life."
+    },
+    {
+      question: "What types of rug damage can be repaired?",
+      answer: "We can repair a wide range of rug damage, including frayed edges, unraveling seams, moth damage, holes, tears, worn patches, color fading, and fringe restoration. Each repair is tailored to the rug's fiber, weave, and style to preserve its authenticity."
+    },
+    {
+      question: "What is included in the full rug cleaning service?",
+      answer: "Our comprehensive rug cleaning service includes: Dust and debris removal, gentle hand-washing with fiber-safe solutions, rinsing and odor removal, stain treatment (as needed), controlled drying to prevent shrinkage or warping, and final grooming and inspection."
+    },
+    {
+      question: "How do I choose the right rug?",
+      answer: "Choosing the right rug depends on your room size, furniture layout, style preference, and how much foot traffic the area receives. Consider the rug's size, color, pattern, and texture to complement your space. For high-traffic areas, go for durable materials like wool or synthetics. For a cozier or formal look, natural fibers or hand-knotted rugs work beautifully."
+    },
+    {
+      question: "What defines a high-quality rug?",
+      answer: "A high-quality rug is defined by its material, construction, knot or weave density, and craftsmanship. Look for natural fibers (like wool or silk), strong backing, consistent weaving, and well-finished edges. Handmade rugs, especially hand-knotted ones, often reflect higher quality and longevity compared to mass-produced options."
+    },
+    {
+      question: "What is the difference between handmade and machine-made rugs?",
+      answer: "Handmade rugs (like hand-knotted or hand-tufted) are crafted by skilled artisans and often feature intricate details, unique patterns, and higher durability. Each piece is one-of-a-kind. Machine-made rugs are produced using automated looms, making them more affordable and widely available. They offer consistent patterns but typically have a shorter lifespan than handmade rugs."
+    }
+  ];
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission
     window.location.href = "mailto:info@thephenixcarpets.com";
+  };
+
+  const toggleFaq = (index) => {
+    setOpenFaq(openFaq === index ? null : index);
   };
 
   return (
@@ -156,7 +189,7 @@ const ContactPage = () => {
         </div>
 
         {/* Contact Information Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {contactInfo.map((info, index) => (
             <div
               key={index}
@@ -181,6 +214,74 @@ const ContactPage = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* FAQ Section */}
+        <div className="bg-white rounded-2xl shadow-xl p-8 overflow-hidden relative">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 opacity-30"></div>
+          
+          <div className="relative z-10">
+            <div className="flex items-center gap-3 mb-8 text-center justify-center">
+              <HelpCircle className="w-8 h-8 text-blue-600" />
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Frequently Asked Questions
+              </h2>
+            </div>
+            
+            <div className="max-w-4xl mx-auto">
+              {faqs.map((faq, index) => (
+                <div key={index} className="mb-4 last:mb-0">
+                  <div
+                    className={`bg-white rounded-lg border border-gray-200 shadow-sm transition-all duration-300 hover:shadow-md ${
+                      openFaq === index ? 'ring-2 ring-blue-500 ring-opacity-20' : ''
+                    }`}
+                  >
+                    <button
+                      onClick={() => toggleFaq(index)}
+                      className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
+                    >
+                      <h3 className="text-lg font-semibold text-gray-800 pr-4">
+                        {faq.question}
+                      </h3>
+                      <div className="flex-shrink-0">
+                        {openFaq === index ? (
+                          <ChevronUp className="w-5 h-5 text-blue-600 transform transition-transform duration-200" />
+                        ) : (
+                          <ChevronDown className="w-5 h-5 text-gray-400 transform transition-transform duration-200" />
+                        )}
+                      </div>
+                    </button>
+                    
+                    <div
+                      className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                        openFaq === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                      }`}
+                    >
+                      <div className="px-6 pb-4 pt-0">
+                        <div className="h-px bg-gradient-to-r from-blue-200 to-purple-200 mb-4"></div>
+                        <p className="text-gray-600 leading-relaxed">
+                          {faq.answer}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <div className="text-center mt-8">
+              <p className="text-gray-600 mb-4">
+                Still have questions? We're here to help!
+              </p>
+              <a
+                href="mailto:info@thephenixcarpets.com"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg"
+              >
+                <Mail className="w-5 h-5" />
+                Contact Our Experts
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
