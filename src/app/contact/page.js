@@ -278,7 +278,7 @@ const ContactPage = () => {
                 className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg"
               >
                 <Mail className="w-5 h-5" />
-                Contact Our Experts
+                Contact Our Experts (info@thephenixcarpets.com)
               </a>
             </div>
           </div>
