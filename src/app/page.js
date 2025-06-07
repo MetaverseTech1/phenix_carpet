@@ -1,34 +1,19 @@
 import React from 'react';
-import HeroSection from '@/components/home/HeroSection';
-import AboutSiteSection from '@/components/home/AboutSiteSection';
-import AboutUsSection from '@/components/home/AboutUsSection';
-import ProductCategory from '@/components/home/ProductCategory';
-import ProductShowcase from '@/components/home/ProductShowcase';
-import InstagramWall from '@/components/home/InstagramWall';
-import { slides } from '../lib/data';
-import { categories } from '../lib/data';
-import { collectionsInstagramWall } from '../lib/data';
 
 export default function Home() {
   return (
-    <div>
-      {/* hero section */}
-      <HeroSection slides={slides} />
-
-      {/* about site section */}
-      <AboutSiteSection />
-
-      {/* about us section */}
-      <AboutUsSection />
-
-      {/* product category */}
-      <ProductCategory categories={categories} />
-
-      {/* product showcase */}
-      <ProductShowcase />
-
-      {/* instagram wall */}
-      <InstagramWall collectionsInstagramWall={collectionsInstagramWall} />
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="text-center p-8">
+        <h1 className="text-4xl font-bold text-gray-800 mb-4">
+          Website Moved
+        </h1>
+        <p className="text-xl text-gray-600 mb-6">
+          This website has been moved to Dhruv Rugs
+        </p>
+        <div className="text-gray-500">
+          Please update your bookmarks accordingly
+        </div>
+      </div>
     </div>
   );
 }
