@@ -6,14 +6,14 @@ import './globals.css'
 
 export const metadata = {
   title: {
-    default: 'The Phenix Carpet - Luxury Carpets & Rugs',
-    template: '%s | The Phenix Carpet'
+    default: 'Dhruv Rugs - Luxury Carpets & Rugs',
+    template: '%s | Dhruv Rugs'
   },
   description: 'Premium luxury carpets and rugs manufacturer since 1996. Hand-knotted, hand-tufted, and handloom carpets for hospitality and residential spaces. Export quality from India.',
   keywords: 'luxury carpets, hand knotted rugs, hospitality carpets, premium rugs, Indian carpets, wool carpets, silk carpets, carpet manufacturer, carpet exporter',
-  authors: [{ name: 'The Phenix Carpet' }],
-  creator: 'The Phenix Carpet',
-  publisher: 'The Phenix Carpet',
+  authors: [{ name: 'Dhruv Rugs' }],
+  creator: 'Dhruv Rugs',
+  publisher: 'Dhruv Rugs',
   metadataBase: new URL('https://www.thephenixcarpets.com'),
   alternates: {
     canonical: '/',
@@ -22,21 +22,21 @@ export const metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://www.thephenixcarpets.com',
-    title: 'The Phenix Carpet - Luxury Carpets & Rugs',
+    title: 'Dhruv Rugs - Luxury Carpets & Rugs',
     description: 'Premium luxury carpets and rugs manufacturer since 1996. Hand-knotted, hand-tufted, and handloom carpets for hospitality and residential spaces.',
-    siteName: 'The Phenix Carpet',
+    siteName: 'Dhruv Rugs',
     images: [
       {
         url: '/images/001_1.jpg',
         width: 1200,
         height: 630,
-        alt: 'The Phenix Carpet - Luxury Carpets',
+        alt: 'Dhruv Rugs - Luxury Carpets',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'The Phenix Carpet - Luxury Carpets & Rugs',
+    title: 'Dhruv Rugs - Luxury Carpets & Rugs',
     description: 'Premium luxury carpets and rugs manufacturer since 1996. Hand-knotted, hand-tufted, and handloom carpets.',
     images: ['/images/001_1.jpg'],
   },
@@ -75,7 +75,7 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
-              "name": "The Phenix Carpet",
+              "name": "Dhruv Rugs",
               "description": "Premium luxury carpets and rugs manufacturer since 1996",
               "url": "https://www.thephenixcarpets.com",
               "telephone": "+91-9454049020",
@@ -96,17 +96,17 @@ export default function RootLayout({ children }) {
 
               "areaServed": [ "USA", "India"],
               "serviceType": "Carpet Manufacturing and Export",
-              "logo": "https://www.thephenixcarpets.com/images/logo.png",
+              "logo": "https://www.thephenixcarpets.com/images/LOGO3210.jpg",
               "image": "https://www.thephenixcarpets.com/images/001_1.jpg"
             })
           }}
         />
       </head>
       <body>
-        {/* <Header /> */}
+        <Header />
         <main>{children}</main>
         <WhatsAppFloat phoneNumber="9454049020" />
-        {/* <Footer /> */}
+        <Footer />
       </body>
     </html>
   )

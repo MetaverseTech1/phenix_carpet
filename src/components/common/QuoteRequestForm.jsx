@@ -53,7 +53,7 @@ Order Requirements:
 - Quantity: ${formData.quantity}
 - Additional Requirements: ${formData.additionalRequirements || 'None'}
 
-This is a quote request from The Phenix Carpets website.
+This is a quote request from Dhruv Rugss website.
     `.trim();
   };
 

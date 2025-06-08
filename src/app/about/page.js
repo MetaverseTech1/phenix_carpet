@@ -23,7 +23,7 @@ const AboutPage = ({ teamMembers }) => {
       icon: <Heart className="w-12 h-12 text-red-600" />,
       title: "Social Accountability",
       content:
-        "The Phenix Carpet is equally passionate about discharging its social obligations as it is about retaining its position in the world market as a leading manufacturer and exporter of woolen, silk, viscose and cotton carpets from India. The company is committed to contributing to various social causes.",
+        "Dhruv Rugs is equally passionate about discharging its social obligations as it is about retaining its position in the world market as a leading manufacturer and exporter of woolen, silk, viscose and cotton carpets from India. The company is committed to contributing to various social causes.",
     },
   ];
 
@@ -85,7 +85,7 @@ const AboutPage = ({ teamMembers }) => {
           <div className="space-y-6">
             <p className="text-gray-600 leading-relaxed">
               It is our proud pleasure to present you our good designs with eye
-              catching colour scheme. THE PHENIX CARPET was established in 1996,
+              catching colour scheme. Dhruv Rugs was established in 1996,
               and since then we've been crafting excellence in every thread.
             </p>
 
@@ -137,7 +137,7 @@ const AboutPage = ({ teamMembers }) => {
               Our Expertise
             </h3>
             <p className="text-gray-700 mb-4">
-              THE PHENIX CARPET is running by Mr. Pawan Maurya with Mrs. Babita
+              Dhruv Rugs is running by Mr. Pawan Maurya with Mrs. Babita
               Maurya. We are second generation of manufacturer and exporter of
               Hand knots, Handloom & Hand tufted and Woolen Carpets in India.
               We specialized in natural dyes carpets. We get our carpets weaved
@@ -168,7 +168,7 @@ const AboutPage = ({ teamMembers }) => {
               Our Core Objectives
             </h3>
             <p className="text-gray-700 text-center mb-8">
-              THE PHENIX CARPET built its business on 3 primary objectives –
+              Dhruv Rugs built its business on 3 primary objectives –
               Innovation, quality selection & prompt service.
             </p>
             <div className="grid md:grid-cols-3 gap-6">
@@ -194,7 +194,7 @@ const AboutPage = ({ teamMembers }) => {
             <p className="text-lg text-gray-700 mb-6">
               We pride ourselves on supplying independent home furnishing
               retailers, chain stores & internet vendors throughout the US,
-              Canada, Europe Japan & Australia. THE PHENIX CARPET range of
+              Canada, Europe Japan & Australia. Dhruv Rugs range of
               offerings consists of the highest quality rugs. Over our history,
               we've strived to provide customers with the best experience and
               most current fashion.

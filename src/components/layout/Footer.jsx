@@ -34,8 +34,8 @@ const Footer = () => {
           {/* Company Info Section */}
           <div className="space-y-4 flex justify-center flex-col">
             <Image
-              src="/images/LOGO3210.png"
-              alt="The Phenix Carpet"
+              src="/images/LOGO3210.jpg"
+              alt="Dhruv Rugs"
               width={200}
               height={64}
               className="object-contain h-16"
@@ -175,11 +175,11 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="text-center space-y-4">
             <p className="text-sm text-slate-400">
-              Copyright © {new Date().getFullYear()} The Phenix Carpet, All
+              Copyright © {new Date().getFullYear()} Dhruv Rugs, All
               Rights Reserved.
             </p>
             <p className="text-xs text-slate-500 leading-relaxed max-w-4xl mx-auto">
-              The Phenix Carpet, India&apos;s Largest Manufacturer of Rugs/Carpets,
+              Dhruv Rugs, India&apos;s Largest Manufacturer of Rugs/Carpets,
               Woolen Carpet Manufacturers, Hand Knotted Rugs Carpet Manufacturer
               and Exporter in India, Indoor Carpet Manufacturers, Carpet
               Manufacturers in India, Outdoor Carpet Manufacturers, Carpet

@@ -132,7 +132,7 @@ const ProductShowcase = () => {
                 IN STOCK ---
               </div>
               <h2 className="text-2xl text-start font-bold tracking-[0.05rem] mb-4">
-                The Phenix Carpet
+                Dhruv Rugs
               </h2>
               <p className="text-gray-600 text-start tracking-[0.03rem]">
                 Despite our extensive range of stock designs and sizes, you may

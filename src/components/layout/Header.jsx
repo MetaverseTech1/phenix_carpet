@@ -130,7 +130,7 @@ const Header = () => {
             {/* Logo */}
             <button onClick={() => router.push("/")}>
               <Image 
-                src="/images/LOGO3210.png" 
+                src="/images/LOGO3210.jpg" 
                 alt="Phenix Carpet Logo" 
                 width={80} 
                 height={64} 
