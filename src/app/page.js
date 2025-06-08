@@ -25,10 +25,6 @@ export default function Home() {
           </a>
         </div>
         
-        <div className="text-gray-500 text-sm">
-          Please update your bookmarks accordingly
-        </div>
-        
         
       </div>
     </div>
