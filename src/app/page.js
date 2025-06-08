@@ -4,12 +4,15 @@ export default function Home() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="text-center p-8 max-w-md">
-        <h1 className="text-4xl font-bold text-gray-800 mb-4">
-          Website Moved
+        <h1 className="text-4xl font-bold text-gray-800 mb-2">
+          Phenix Carpet
         </h1>
-        <p className="text-xl text-gray-600 mb-6">
-          This website has been moved to Dhruv Rugs
-        </p>
+        <div className="text-2xl text-gray-700 mb-2 font-medium">
+          Is Now
+        </div>
+        <h2 className="text-4xl font-bold text-blue-600 mb-6">
+          Dhruv Rugs International
+        </h2>
         
         <div className="mb-6">
           <a 
@@ -26,9 +29,7 @@ export default function Home() {
           Please update your bookmarks accordingly
         </div>
         
-        <div className="mt-4 text-gray-400 text-sm">
-          You will be automatically redirected in a few seconds...
-        </div>
+        
       </div>
     </div>
   );
