@@ -63,7 +63,7 @@ This is a quote request from Dhruv Rugss website.
     // Compose email mailto link
     const subject = `Quote Request for ${productDetails.name} ${productDetails.styleNumber? productDetails.styleNumber : productDetails.productId}`;
     const body = composeEmailBody();
-    const mailtoLink = `mailto:info@thephenixcarpets.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const mailtoLink = `mailto:info@dhruvrugs.global?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     
     // Show thank you message
     setShowThankYou(true);

@@ -6,6 +6,6 @@ export default function robots() {
       allow: '/',
      
     },
-    sitemap: 'https://www.thephenixcarpets.com/sitemap.xml',
+    sitemap: 'https://www.dhruvrugs.global/sitemap.xml',
   };
 }

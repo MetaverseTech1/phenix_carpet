@@ -19,7 +19,7 @@ const ContactPage = () => {
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email Us",
-      details: ["info@thephenixcarpets.com", "trade@thephenixcarpets.com"],
+      details: ["info@dhruvrugs.global", "trade@dhruvrugs.global"],
       description: "We'll respond within 24 hours",
       gradient: "from-purple-400 to-pink-500",
     },
@@ -71,7 +71,7 @@ const ContactPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission
-    window.location.href = "mailto:info@thephenixcarpets.com";
+    window.location.href = "mailto:info@dhruvrugs.global";
   };
 
   const toggleFaq = (index) => {
@@ -274,11 +274,11 @@ const ContactPage = () => {
                 Still have questions? We're here to help!
               </p>
               <a
-                href="mailto:info@thephenixcarpets.com"
+                href="mailto:info@dhruvrugs.global"
                 className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg"
               >
                 <Mail className="w-5 h-5" />
-                Contact Our Experts (info@thephenixcarpets.com)
+                Contact Our Experts (info@dhruvrugs.global)
               </a>
             </div>
           </div>

@@ -2,7 +2,7 @@
 import { hospitalityCollection, luxuryCollection, productsCategoryCollection } from '@/lib/data';
 
 export default function sitemap() {
-  const baseUrl = 'https://www.thephenixcarpets.com';
+  const baseUrl = 'https://www.dhruvrugs.global';
   const currentDate = new Date().toISOString();
 
   // Static routes

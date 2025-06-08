@@ -14,14 +14,14 @@ export const metadata = {
   authors: [{ name: 'Dhruv Rugs' }],
   creator: 'Dhruv Rugs',
   publisher: 'Dhruv Rugs',
-  metadataBase: new URL('https://www.thephenixcarpets.com'),
+  metadataBase: new URL('https://www.dhruvrugs.global'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://www.thephenixcarpets.com',
+    url: 'https://www.dhruvrugs.global',
     title: 'Dhruv Rugs - Luxury Carpets & Rugs',
     description: 'Premium luxury carpets and rugs manufacturer since 1996. Hand-knotted, hand-tufted, and handloom carpets for hospitality and residential spaces.',
     siteName: 'Dhruv Rugs',
@@ -66,7 +66,7 @@ export default function RootLayout({ children }) {
         {/* Additional SEO meta tags */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="canonical" href="https://www.thephenixcarpets.com" />
+        <link rel="canonical" href="https://www.dhruvrugs.global" />
         
         {/* Structured Data for Local Business */}
         <script
@@ -77,9 +77,9 @@ export default function RootLayout({ children }) {
               "@type": "LocalBusiness",
               "name": "Dhruv Rugs",
               "description": "Premium luxury carpets and rugs manufacturer since 1996",
-              "url": "https://www.thephenixcarpets.com",
+              "url": "https://www.dhruvrugs.global",
               "telephone": "+91-9454049020",
-              "email": "info@thephenixcarpets.com",
+              "email": "info@dhruvrugs.global",
               "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "Gaderiyapur, Mondh",
@@ -96,8 +96,8 @@ export default function RootLayout({ children }) {
 
               "areaServed": [ "USA", "India"],
               "serviceType": "Carpet Manufacturing and Export",
-              "logo": "https://www.thephenixcarpets.com/images/LOGO3210.jpg",
-              "image": "https://www.thephenixcarpets.com/images/001_1.jpg"
+              "logo": "https://www.dhruvrugs.global/images/LOGO3210.jpg",
+              "image": "https://www.dhruvrugs.global/images/001_1.jpg"
             })
           }}
         />

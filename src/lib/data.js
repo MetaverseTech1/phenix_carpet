@@ -5,14 +5,14 @@ export const teamMembers = [
     name: "Mr. Pawan Maurya",
     role: "CEO / Sales Director",
     image:
-      "https://thephenixcarpets.com/wp-content/uploads/2023/04/01-1-265x300.jpg",
+      "https://dhruvrugs.global/wp-content/uploads/2023/04/01-1-265x300.jpg",
     className: "md:order-2",
   },
   {
     name: "Mrs. Babita Maurya",
     role: "Sales/Marketing Head",
     image:
-      "https://thephenixcarpets.com/wp-content/uploads/2023/05/WhatsApp-Image-2023-04-11-at-09.18.41-288x300.jpeg",
+      "https://dhruvrugs.global/wp-content/uploads/2023/05/WhatsApp-Image-2023-04-11-at-09.18.41-288x300.jpeg",
     className: "md:order-3",
   },
 ];
