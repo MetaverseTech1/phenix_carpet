@@ -4,17 +4,33 @@ import React, { useState, useEffect } from 'react';
 import { MessageCircle } from 'lucide-react';
 
 const WhatsAppFloat = ({ phoneNumber = "1234567890" }) => {
-  // Ensure phone number has country code
+  // Format phone number according to E.164 standard for WhatsApp
   const formatPhoneNumber = (number) => {
-    // Remove any spaces, dashes, or special characters
-    const cleanNumber = number.replace(/\D/g, '');
+    if (!number) return '';
     
-    // If it's an Indian number starting with 8, 9, 7, or 6 and is 10 digits, add country code
+    // Remove all non-digit characters
+    let cleanNumber = number.toString().replace(/\D/g, '');
+    
+    // Handle different input formats
     if (cleanNumber.length === 10 && /^[6-9]/.test(cleanNumber)) {
-      return `91${cleanNumber}`;
+      // Indian mobile number without country code
+      cleanNumber = `91${cleanNumber}`;
+    } else if (cleanNumber.length === 11 && cleanNumber.startsWith('0')) {
+      // Remove leading zero and add country code
+      cleanNumber = `91${cleanNumber.substring(1)}`;
+    } else if (cleanNumber.length === 12 && cleanNumber.startsWith('91')) {
+      // Already has Indian country code
+      cleanNumber = cleanNumber;
+    } else if (cleanNumber.length === 13 && cleanNumber.startsWith('091')) {
+      // Remove leading zero from country code
+      cleanNumber = cleanNumber.substring(1);
     }
     
-    // If it already has country code or is international format, return as is
+    // Validate final format (should be 12 digits for Indian numbers: 91 + 10 digits)
+    if (!/^91[6-9]\d{9}$/.test(cleanNumber)) {
+      console.warn('Invalid phone number format:', number, 'cleaned to:', cleanNumber);
+    }
+    
     return cleanNumber;
   };
   const [isHovered, setIsHovered] = useState(false);
@@ -35,8 +51,20 @@ const WhatsAppFloat = ({ phoneNumber = "1234567890" }) => {
 
   const handleClick = () => {
     const formattedNumber = formatPhoneNumber(phoneNumber);
-    console.log('Opening WhatsApp with number:', formattedNumber); // Debug log
-    window.open(`https://wa.me/${formattedNumber}`, '_blank');
+    const whatsappUrl = `https://wa.me/${formattedNumber}`;
+    
+    // Debug logging
+    console.log('Original number:', phoneNumber);
+    console.log('Formatted number:', formattedNumber);
+    console.log('WhatsApp URL:', whatsappUrl);
+    
+    // Validate the URL format
+    if (formattedNumber && formattedNumber.length >= 10) {
+      window.open(whatsappUrl, '_blank');
+    } else {
+      console.error('Invalid phone number format. Cannot open WhatsApp.');
+      alert('Invalid phone number format. Please check the number.');
+    }
   };
 
   return (
