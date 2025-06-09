@@ -1,34 +1,36 @@
 import React from 'react';
-import HeroSection from '@/components/home/HeroSection';
-import AboutSiteSection from '@/components/home/AboutSiteSection';
-import AboutUsSection from '@/components/home/AboutUsSection';
-import ProductCategory from '@/components/home/ProductCategory';
-import ProductShowcase from '@/components/home/ProductShowcase';
-import InstagramWall from '@/components/home/InstagramWall';
-import { slides } from '../lib/data';
-import { categories } from '../lib/data';
-import { collectionsInstagramWall } from '../lib/data';
 
 export default function Home() {
   return (
-    <div>
-      {/* hero section */}
-      <HeroSection slides={slides} />
-
-      {/* about site section */}
-      <AboutSiteSection />
-
-      {/* about us section */}
-      <AboutUsSection />
-
-      {/* product category */}
-      <ProductCategory categories={categories} />
-
-      {/* product showcase */}
-      <ProductShowcase />
-
-      {/* instagram wall */}
-      <InstagramWall collectionsInstagramWall={collectionsInstagramWall} />
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="text-center p-8 max-w-md">
+        <h1 className="text-4xl font-bold text-gray-800 mb-2">
+          The Phenix Carpet
+        </h1>
+        <div className="text-2xl text-gray-700 mb-2 font-medium">
+          Is Now
+        </div>
+        <h2 className="text-4xl font-bold text-blue-600 mb-6">
+          Dhruv Rugs International
+        </h2>
+        
+        <div className="mb-6">
+          <a 
+            href="https://dhruvrugs.global" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+          >
+            Visit Dhruv Rugs
+          </a>
+        </div>
+        
+        <div className="text-gray-500 text-sm">
+          Please update your bookmarks accordingly
+        </div>
+        
+        
+      </div>
     </div>
   );
 }
