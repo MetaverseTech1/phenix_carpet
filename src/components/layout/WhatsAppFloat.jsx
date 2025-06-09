@@ -1,11 +1,24 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MessageCircle } from 'lucide-react';
 
 const WhatsAppFloat = ({ phoneNumber = "1234567890" }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
+  const [rippleScale, setRippleScale] = useState(1);
+
+  // Custom ripple animation using React state
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRippleScale(prevScale => {
+        if (prevScale >= 1.2) return 1;
+        return prevScale + 0.01;
+      });
+    }, 20);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const handleClick = () => {
     window.open(`https://wa.me/${phoneNumber}`, '_blank');
@@ -14,11 +27,12 @@ const WhatsAppFloat = ({ phoneNumber = "1234567890" }) => {
   return (
     <div className="fixed bottom-8 right-8 z-50">
       <div className="relative">
-        {/* Animated ripple effect using CSS animations */}
+        {/* Animated ripple effect using transform */}
         <div 
-          className="absolute inset-0 rounded-full bg-green-500 opacity-20 animate-pulse"
+          className="absolute inset-0 rounded-full bg-green-500 opacity-20 transition-all duration-100"
           style={{
-            animation: 'ripple 2s infinite ease-in-out'
+            transform: `scale(${rippleScale})`,
+            opacity: rippleScale > 1.1 ? 0.1 : 0.2
           }}
         />
         
@@ -32,13 +46,14 @@ const WhatsAppFloat = ({ phoneNumber = "1234567890" }) => {
           className={`
             relative bg-green-500 hover:bg-green-600 text-white p-4 rounded-full 
             shadow-lg flex items-center justify-center group transition-all duration-300
+            transform-gpu
             ${isHovered ? 'scale-110' : 'scale-100'}
             ${isPressed ? 'scale-95' : ''}
           `}
         >
           <MessageCircle 
             size={28} 
-            className={`transition-transform duration-300 ${isHovered ? 'rotate-12' : ''}`} 
+            className={`transition-transform duration-300 ${isHovered ? 'rotate-12' : 'rotate-0'}`} 
           />
           
           {/* Tooltip */}
@@ -46,31 +61,13 @@ const WhatsAppFloat = ({ phoneNumber = "1234567890" }) => {
             className={`
               absolute right-full mr-4 bg-black text-white px-4 py-2 rounded-lg 
               text-sm whitespace-nowrap transition-all duration-300
-              ${isHovered ? 'opacity-100 visible' : 'opacity-0 invisible'}
+              ${isHovered ? 'opacity-100 visible translate-x-0' : 'opacity-0 invisible translate-x-2'}
             `}
           >
             Chat with us on WhatsApp
           </span>
         </button>
       </div>
-      
-      {/* CSS for ripple animation */}
-      <style jsx>{`
-        @keyframes ripple {
-          0% {
-            transform: scale(1);
-            opacity: 0.2;
-          }
-          50% {
-            transform: scale(1.2);
-            opacity: 0.1;
-          }
-          100% {
-            transform: scale(1);
-            opacity: 0.2;
-          }
-        }
-      `}</style>
     </div>
   );
 };
