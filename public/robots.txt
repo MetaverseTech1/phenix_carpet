@@ -1,4 +1,4 @@
-# Robots.txt for Dhruv Rugs Website
+# Robots.txt for Dhruv Rugs International Website
 # Allow all web crawlers to access the entire site
 
 User-agent: *

@@ -13,7 +13,7 @@ const AboutSiteSection = () => {
           {/* Header */}
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl font-bold mb-4 text-gray-900">
-              Dhruv Rugs
+              Dhruv Rugs International
             </h2>
             <div className="flex justify-center items-center gap-2 mb-6">
               <div className="h-px w-12 bg-gray-300"></div>

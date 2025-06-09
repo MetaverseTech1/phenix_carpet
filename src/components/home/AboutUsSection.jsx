@@ -31,7 +31,7 @@ const AboutUsSection = () => {
           <div className="space-y-6">
             <p className="text-gray-600 leading-relaxed">
               It is our proud pleasure to present you our good designs with eye
-              catching colour scheme. Dhruv Rugs was established in 1996,
+              catching colour scheme. Dhruv Rugs International was established in 1996,
               and since then we've been crafting excellence in every thread.
             </p>
 

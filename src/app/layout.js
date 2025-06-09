@@ -6,14 +6,14 @@ import './globals.css'
 
 export const metadata = {
   title: {
-    default: 'Dhruv Rugs - Luxury Carpets & Rugs',
-    template: '%s | Dhruv Rugs'
+    default: 'Dhruv Rugs International - Luxury Carpets & Rugs',
+    template: '%s | Dhruv Rugs International'
   },
   description: 'Premium luxury carpets and rugs manufacturer since 1996. Hand-knotted, hand-tufted, and handloom carpets for hospitality and residential spaces. Export quality from India.',
   keywords: 'luxury carpets, hand knotted rugs, hospitality carpets, premium rugs, Indian carpets, wool carpets, silk carpets, carpet manufacturer, carpet exporter',
-  authors: [{ name: 'Dhruv Rugs' }],
-  creator: 'Dhruv Rugs',
-  publisher: 'Dhruv Rugs',
+  authors: [{ name: 'Dhruv Rugs International' }],
+  creator: 'Dhruv Rugs International',
+  publisher: 'Dhruv Rugs International',
   metadataBase: new URL('https://www.dhruvrugs.global'),
   alternates: {
     canonical: '/',
@@ -22,21 +22,21 @@ export const metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://www.dhruvrugs.global',
-    title: 'Dhruv Rugs - Luxury Carpets & Rugs',
+    title: 'Dhruv Rugs International - Luxury Carpets & Rugs',
     description: 'Premium luxury carpets and rugs manufacturer since 1996. Hand-knotted, hand-tufted, and handloom carpets for hospitality and residential spaces.',
-    siteName: 'Dhruv Rugs',
+    siteName: 'Dhruv Rugs International',
     images: [
       {
         url: '/images/001_1.jpg',
         width: 1200,
         height: 630,
-        alt: 'Dhruv Rugs - Luxury Carpets',
+        alt: 'Dhruv Rugs International - Luxury Carpets',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Dhruv Rugs - Luxury Carpets & Rugs',
+    title: 'Dhruv Rugs International - Luxury Carpets & Rugs',
     description: 'Premium luxury carpets and rugs manufacturer since 1996. Hand-knotted, hand-tufted, and handloom carpets.',
     images: ['/images/001_1.jpg'],
   },
@@ -75,7 +75,7 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
-              "name": "Dhruv Rugs",
+              "name": "Dhruv Rugs International",
               "description": "Premium luxury carpets and rugs manufacturer since 1996",
               "url": "https://www.dhruvrugs.global",
               "telephone": "+91-9454049020",

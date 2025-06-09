@@ -19,7 +19,7 @@ const ContactPage = () => {
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email Us",
-      details: ["info@dhruvrugs.global", "trade@dhruvrugs.global"],
+      details: ["info@dhruvrugs.global"],
       description: "We'll respond within 24 hours",
       gradient: "from-purple-400 to-pink-500",
     },

@@ -53,7 +53,7 @@ Order Requirements:
 - Quantity: ${formData.quantity}
 - Additional Requirements: ${formData.additionalRequirements || 'None'}
 
-This is a quote request from Dhruv Rugss website.
+This is a quote request from Dhruv Rugs Internationals website.
     `.trim();
   };
 
