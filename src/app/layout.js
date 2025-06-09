@@ -103,10 +103,10 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        {/* <Header /> */}
+        <Header />
         <main>{children}</main>
-        {/* <WhatsAppFloat phoneNumber="8318600961" />
-        <Footer /> */}
+        <WhatsAppFloat phoneNumber="8318600961" />
+        <Footer />
       </body>
     </html>
   )
