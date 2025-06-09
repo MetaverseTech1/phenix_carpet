@@ -4,6 +4,19 @@ import React, { useState, useEffect } from 'react';
 import { MessageCircle } from 'lucide-react';
 
 const WhatsAppFloat = ({ phoneNumber = "1234567890" }) => {
+  // Ensure phone number has country code
+  const formatPhoneNumber = (number) => {
+    // Remove any spaces, dashes, or special characters
+    const cleanNumber = number.replace(/\D/g, '');
+    
+    // If it's an Indian number starting with 8, 9, 7, or 6 and is 10 digits, add country code
+    if (cleanNumber.length === 10 && /^[6-9]/.test(cleanNumber)) {
+      return `91${cleanNumber}`;
+    }
+    
+    // If it already has country code or is international format, return as is
+    return cleanNumber;
+  };
   const [isHovered, setIsHovered] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
   const [rippleScale, setRippleScale] = useState(1);
@@ -21,7 +34,9 @@ const WhatsAppFloat = ({ phoneNumber = "1234567890" }) => {
   }, []);
 
   const handleClick = () => {
-    window.open(`https://wa.me/${phoneNumber}`, '_blank');
+    const formattedNumber = formatPhoneNumber(phoneNumber);
+    console.log('Opening WhatsApp with number:', formattedNumber); // Debug log
+    window.open(`https://wa.me/${formattedNumber}`, '_blank');
   };
 
   return (
