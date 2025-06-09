@@ -5,7 +5,7 @@ export default function Home() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="text-center p-8 max-w-md">
         <h1 className="text-4xl font-bold text-gray-800 mb-2">
-          The Phenix Carpet
+          The Phenix Carpet 
         </h1>
         <div className="text-2xl text-gray-700 mb-2 font-medium">
           Is Now
