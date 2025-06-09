@@ -12,7 +12,7 @@ const ContactPage = () => {
     {
       icon: <Phone className="w-6 h-6" />,
       title: "Call Us",
-      details: ["+91 9454049020"],
+      details: ["+91 8318600961"],
       description: "Available Mon-Sat, 9:00 AM to 6:00 PM",
       gradient: "from-blue-400 to-purple-500",
     },

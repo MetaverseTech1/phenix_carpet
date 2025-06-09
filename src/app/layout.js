@@ -78,7 +78,7 @@ export default function RootLayout({ children }) {
               "name": "Dhruv Rugs International",
               "description": "Premium luxury carpets and rugs manufacturer since 1996",
               "url": "https://www.dhruvrugs.global",
-              "telephone": "+91-9454049020",
+              "telephone": "+91-8318600961",
               "email": "info@dhruvrugs.global",
               "address": {
                 "@type": "PostalAddress",
@@ -105,7 +105,7 @@ export default function RootLayout({ children }) {
       <body>
         <Header />
         <main>{children}</main>
-        <WhatsAppFloat phoneNumber="9454049020" />
+        <WhatsAppFloat phoneNumber="8318600961" />
         <Footer />
       </body>
     </html>
