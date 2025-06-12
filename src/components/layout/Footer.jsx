@@ -12,7 +12,7 @@ import {
   MapPin,
 } from "lucide-react";
 import { RiTwitterXFill } from "react-icons/ri";
-import { FaTelegramPlane } from "react-icons/fa";
+import { FaTelegramPlane, FaPinterestP, FaYoutube, FaLine } from "react-icons/fa";
 import { useRouter } from "next/navigation"; // App Router navigation
 
 const Footer = () => {
@@ -87,6 +87,30 @@ const Footer = () => {
                 <FaTelegramPlane size={20} />
               </a>
               <a
+                href="https://pin.it/7zbL7wGdN"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-red-500 transition-colors"
+              >
+                <FaPinterestP size={20} />
+              </a>
+              <a
+                href="https://youtube.com/@dhruvrugs?feature=shared"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-red-500 transition-colors"
+              >
+                <FaYoutube size={20} />
+              </a>
+              <a
+                href="https://line.me/ti/p/TG9bKKy3eR"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-green-500 transition-colors"
+              >
+                <FaLine size={20} />
+              </a>
+              <a
                 href="https://maps.app.goo.gl/KTLSwGFMT98LGwXp9"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -158,7 +182,7 @@ const Footer = () => {
                   placeholder="Enter your email"
                   className="px-4 py-2 bg-slate-800 text-white rounded-l focus:outline-none focus:ring-2 focus:ring-blue-500 flex-grow"
                 />
-                <button 
+                <button
                   type="submit"
                   className="bg-white text-black px-4 py-2 rounded-r hover:bg-blue-100 transition-colors"
                 >
