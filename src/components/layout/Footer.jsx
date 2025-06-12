@@ -47,7 +47,7 @@ const Footer = () => {
 
             <div className="flex justify-center space-x-4 mt-6">
               <a
-                href="https://www.facebook.com/Pawan.TPC?mibextid=ZbWKwL"
+                href="https://www.facebook.com/share/1AhLf6C2Ej"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-blue-400 transition-colors"
@@ -55,7 +55,7 @@ const Footer = () => {
                 <Facebook size={20} />
               </a>
               <a
-                href="https://twitter.com/CarpetPhenix?t=gB5g2YiB6a9hSbX_jvKgow&s=09"
+                href="https://x.com/dhruvrugs?t=KhyBPUUQ0cP4QsjbUkjEXQ&s=09"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-blue-400 transition-colors"
@@ -63,7 +63,7 @@ const Footer = () => {
                 <RiTwitterXFill size={20} />
               </a>
               <a
-                href="https://instagram.com/the_phenix_carpet_?igshid=ZGUzMzM3NWJiOQ=="
+                href="https://www.instagram.com/dhruvrugs?igsh=MWE2YTJpMjNoY2NqdA=="
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-pink-400 transition-colors"
@@ -71,7 +71,7 @@ const Footer = () => {
                 <Instagram size={20} />
               </a>
               <a
-                href="https://www.linkedin.com/company/the-phenix-carprt/"
+                href="https://www.linkedin.com/company/dhruvrugs"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-blue-500 transition-colors"
@@ -79,7 +79,7 @@ const Footer = () => {
                 <Linkedin size={20} />
               </a>
               <a
-                href="http://t.me/the_phenix_carpet"
+                href="http://t.me/dhruvrugs"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-blue-500 transition-colors"
@@ -87,7 +87,7 @@ const Footer = () => {
                 <FaTelegramPlane size={20} />
               </a>
               <a
-                href="https://maps.app.goo.gl/KZByNVJAVXbnmgb97"
+                href="https://maps.app.goo.gl/KTLSwGFMT98LGwXp9"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-blue-500 transition-colors"
