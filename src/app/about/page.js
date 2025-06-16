@@ -74,7 +74,7 @@ const AboutPage = ({ teamMembers }) => {
     <div className="bg-white">
       <PageBanner
         title="About Us"
-        subtitle="Crafting Excellence Since 1996"
+        subtitle="Crafting Excellence Since 2020"
         backgroundImage="url('/images/001_1.jpg')"
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "About Us" }]}
       />
@@ -85,7 +85,7 @@ const AboutPage = ({ teamMembers }) => {
           <div className="space-y-6">
             <p className="text-gray-600 leading-relaxed">
               It is our proud pleasure to present you our good designs with eye
-              catching colour scheme. Dhruv Rugs International was established in 1996,
+              catching colour scheme. Dhruv Rugs International was established in 2020,
               and since then we've been crafting excellence in every thread.
             </p>
 

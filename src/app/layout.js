@@ -9,7 +9,7 @@ export const metadata = {
     default: 'Dhruv Rugs International - Luxury Carpets & Rugs',
     template: '%s | Dhruv Rugs International'
   },
-  description: 'Premium luxury carpets and rugs manufacturer since 1996. Hand-knotted, hand-tufted, and handloom carpets for hospitality and residential spaces. Export quality from India.',
+  description: 'Premium luxury carpets and rugs manufacturer since 2020. Hand-knotted, hand-tufted, and handloom carpets for hospitality and residential spaces. Export quality from India.',
   keywords: 'luxury carpets, hand knotted rugs, hospitality carpets, premium rugs, Indian carpets, wool carpets, silk carpets, carpet manufacturer, carpet exporter',
   authors: [{ name: 'Dhruv Rugs International' }],
   creator: 'Dhruv Rugs International',
@@ -23,7 +23,7 @@ export const metadata = {
     locale: 'en_US',
     url: 'https://www.dhruvrugs.global',
     title: 'Dhruv Rugs International - Luxury Carpets & Rugs',
-    description: 'Premium luxury carpets and rugs manufacturer since 1996. Hand-knotted, hand-tufted, and handloom carpets for hospitality and residential spaces.',
+    description: 'Premium luxury carpets and rugs manufacturer since 2020. Hand-knotted, hand-tufted, and handloom carpets for hospitality and residential spaces.',
     siteName: 'Dhruv Rugs International',
     images: [
       {
@@ -37,7 +37,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Dhruv Rugs International - Luxury Carpets & Rugs',
-    description: 'Premium luxury carpets and rugs manufacturer since 1996. Hand-knotted, hand-tufted, and handloom carpets.',
+    description: 'Premium luxury carpets and rugs manufacturer since 2020. Hand-knotted, hand-tufted, and handloom carpets.',
     images: ['/images/001_1.jpg'],
   },
   robots: {
@@ -76,7 +76,7 @@ export default function RootLayout({ children }) {
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
               "name": "Dhruv Rugs International",
-              "description": "Premium luxury carpets and rugs manufacturer since 1996",
+              "description": "Premium luxury carpets and rugs manufacturer since 2020",
               "url": "https://www.dhruvrugs.global",
               "telephone": "+91-8318600961",
               "email": "info@dhruvrugs.global",
