@@ -1,20 +1,21 @@
 "use client"; // This is needed for client-side components in Next.js
 
 import React, { useEffect, useState } from "react";
+import SearchModal from "@/components/common/SearchModal";
 import {
-  Menu,
+  Facebook,
+  Instagram,
+  Linkedin,
+  Mail,
+  MapPin,
+   Menu,
   X,
   Phone,
   ChevronDown,
   Search,
-  Instagram,
-  Facebook,
-  Linkedin,
-  MapPin,
 } from "lucide-react";
-import SearchModal from "@/components/common/SearchModal";
 import { RiTwitterXFill } from "react-icons/ri";
-import { FaTelegramPlane } from "react-icons/fa";
+import { FaTelegramPlane, FaPinterestP, FaYoutube, FaLine } from "react-icons/fa";
 import Link from "next/link"; // Next.js Link component
 import Image from "next/image"; // Next.js Image component
 import { useRouter } from "next/navigation"; // Next.js router
@@ -74,47 +75,77 @@ const Header = () => {
           </div>
           <div className="hidden md:flex space-x-4">
             <a
-              href="https://instagram.com/the_phenix_carpet_?igshid=ZGUzMzM3NWJiOQ=="
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Instagram className="w-5 h-5 hover:text-blue-400 cursor-pointer transition-colors" />
-            </a>
-            <a
-              href="https://www.facebook.com/Pawan.TPC?mibextid=ZbWKwL"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Facebook className="w-5 h-5 hover:text-blue-400 cursor-pointer transition-colors" />
-            </a>
-            <a
-              href="https://twitter.com/CarpetPhenix?t=gB5g2YiB6a9hSbX_jvKgow&s=09"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <RiTwitterXFill className="w-5 h-5 hover:text-blue-400 cursor-pointer transition-colors" />
-            </a>
-            <a
-              href="https://www.linkedin.com/company/the-phenix-carprt/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Linkedin className="w-5 h-5 hover:text-blue-400 cursor-pointer transition-colors" />
-            </a>
-            <a 
-              href="http://t.me/the_phenix_carpet" 
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaTelegramPlane className="w-5 h-5 hover:text-blue-400 cursor-pointer transition-colors" />
-            </a>
-            <a 
-              href="https://maps.app.goo.gl/KZByNVJAVXbnmgb97" 
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <MapPin className="w-5 h-5 hover:text-blue-400 cursor-pointer transition-colors" />
-            </a>
+                            href="https://www.facebook.com/share/1AhLf6C2Ej"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-blue-400 transition-colors"
+                          >
+                            <Facebook size={20} />
+                          </a>
+                          <a
+                            href="https://x.com/dhruvrugs?t=KhyBPUUQ0cP4QsjbUkjEXQ&s=09"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-blue-400 transition-colors"
+                          >
+                            <RiTwitterXFill size={20} />
+                          </a>
+                          <a
+                            href="https://www.instagram.com/dhruvrugs?igsh=MWE2YTJpMjNoY2NqdA=="
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-pink-400 transition-colors"
+                          >
+                            <Instagram size={20} />
+                          </a>
+                          <a
+                            href="https://www.linkedin.com/company/dhruvrugs"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-blue-500 transition-colors"
+                          >
+                            <Linkedin size={20} />
+                          </a>
+                          <a
+                            href="http://t.me/dhruvrugs"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-blue-500 transition-colors"
+                          >
+                            <FaTelegramPlane size={20} />
+                          </a>
+                          <a
+                            href="https://pin.it/7zbL7wGdN"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-red-500 transition-colors"
+                          >
+                            <FaPinterestP size={20} />
+                          </a>
+                          <a
+                            href="https://youtube.com/@dhruvrugs?feature=shared"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-red-500 transition-colors"
+                          >
+                            <FaYoutube size={20} />
+                          </a>
+                          <a
+                            href="https://line.me/ti/p/TG9bKKy3eR"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-green-500 transition-colors"
+                          >
+                            <FaLine size={20} />
+                          </a>
+                          <a
+                            href="https://maps.app.goo.gl/KTLSwGFMT98LGwXp9"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-blue-500 transition-colors"
+                          >
+                            <MapPin size={20} />
+                          </a>
           </div>
         </div>
       </div>
