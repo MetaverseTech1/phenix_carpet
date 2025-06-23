@@ -6,11 +6,11 @@ import './globals.css'
 
 export const metadata = {
   title: {
-    default: 'Dhruv Rugs International - Luxury Carpets & Rugs',
-    template: '%s | Dhruv Rugs International'
+    default: 'Dhruv Rugs International - Luxury Handmade Rugs & Carpets from India',
+    template: '%s | Dhruv Rugs International',
   },
-  description: 'Premium luxury carpets and rugs manufacturer since 2020. Hand-knotted, hand-tufted, and handloom carpets for hospitality and residential spaces. Export quality from India.',
-  keywords: 'luxury carpets, hand knotted rugs, hospitality carpets, premium rugs, Indian carpets, wool carpets, silk carpets, carpet manufacturer, carpet exporter',
+  description: 'Discover luxury handmade rugs and carpets from Bhadohi, India. Explore hand-knotted, hand-tufted, jute, flat weave, and handloom rugs for homes, hotels, and designers worldwide.',
+  keywords: 'handmade rugs, luxury carpets, hand knotted rugs, hand tufted carpets, Indian rugs, wool rugs, silk rugs, jute rugs, flat weave kilim, modern rugs, rug manufacturer India, custom rugs, hospitality carpets, carpet exporter, Bhadohi rugs, area rugs, home decor, eco-friendly rugs, interior design rugs, rugs for hotels, buy rugs online India',
   authors: [{ name: 'Dhruv Rugs International' }],
   creator: 'Dhruv Rugs International',
   publisher: 'Dhruv Rugs International',
@@ -22,22 +22,22 @@ export const metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://www.dhruvrugs.global',
-    title: 'Dhruv Rugs International - Luxury Carpets & Rugs',
-    description: 'Premium luxury carpets and rugs manufacturer since 2020. Hand-knotted, hand-tufted, and handloom carpets for hospitality and residential spaces.',
+    title: 'Dhruv Rugs International - Luxury Handmade Rugs & Carpets from India',
+    description: 'Luxury carpets and rugs handcrafted in India for global homes, hotels, and offices. Discover our hand-knotted, tufted, and jute collections.',
     siteName: 'Dhruv Rugs International',
     images: [
       {
         url: '/images/001_1.jpg',
         width: 1200,
         height: 630,
-        alt: 'Dhruv Rugs International - Luxury Carpets',
+        alt: 'Dhruv Rugs International - Luxury Handmade Rugs',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Dhruv Rugs International - Luxury Carpets & Rugs',
-    description: 'Premium luxury carpets and rugs manufacturer since 2020. Hand-knotted, hand-tufted, and handloom carpets.',
+    title: 'Dhruv Rugs International - Luxury Handmade Rugs & Carpets from India',
+    description: 'Explore handcrafted rugs and carpets for residential and commercial spaces. Made in Bhadohi, India and shipped worldwide.',
     images: ['/images/001_1.jpg'],
   },
   robots: {
@@ -52,7 +52,7 @@ export const metadata = {
     },
   },
   verification: {
-    google: 'S95Pc8Mn27VdKiDXyNg-iqOxq1FsPQW6jc-F3fcj7IY', 
+    google: 'S95Pc8Mn27VdKiDXyNg-iqOxq1FsPQW6jc-F3fcj7IY',
   },
 }
 
