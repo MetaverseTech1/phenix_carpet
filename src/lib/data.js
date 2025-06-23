@@ -2068,36 +2068,36 @@ export const collectionsInstagramWall = [
     id: 1,
     image:
       "/images/tpc03-scaled.jpg",
-    link: "https://instagram.com/the_phenix_carpet_?igshid=ZGUzMzM3NWJiOQ==",
+    link: "https://www.instagram.com/dhruvrugs?igsh=MWE2YTJpMjNoY2NqdA==",
   },
   {
     id: 2,
     image:
       "/images/tpc02-scaled.jpg",
-    link: "https://instagram.com/the_phenix_carpet_?igshid=ZGUzMzM3NWJiOQ==",
+    link: "https://www.instagram.com/dhruvrugs?igsh=MWE2YTJpMjNoY2NqdA==",
   },
   {
     id: 3,
     image:
       "/images/tpc06-1-scaled.jpg",
-    link: "https://instagram.com/the_phenix_carpet_?igshid=ZGUzMzM3NWJiOQ==",
+    link: "https://www.instagram.com/dhruvrugs?igsh=MWE2YTJpMjNoY2NqdA==",
   },
   {
     id: 4,
     image:
       "/images/tpc04-scaled.jpg",
-    link: "https://instagram.com/the_phenix_carpet_?igshid=ZGUzMzM3NWJiOQ==",
+    link: "https://www.instagram.com/dhruvrugs?igsh=MWE2YTJpMjNoY2NqdA==",
   },
   {
     id: 5,
     image:
       "/images/Untitled-1-copy.jpg",
-    link: "https://instagram.com/the_phenix_carpet_?igshid=ZGUzMzM3NWJiOQ==",
+    link: "https://www.instagram.com/dhruvrugs?igsh=MWE2YTJpMjNoY2NqdA==",
   },
   {
     id: 6,
     image:
       "/images/tpc05-scaled.jpg",
-    link: "https://instagram.com/the_phenix_carpet_?igshid=ZGUzMzM3NWJiOQ==",
+    link: "https://www.instagram.com/dhruvrugs?igsh=MWE2YTJpMjNoY2NqdA==",
   },
 ];
