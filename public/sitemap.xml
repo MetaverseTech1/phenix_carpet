@@ -1,59 +1,673 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- Dhruv Rugs International Website Sitemap -->
-<url>
-<loc>https://www.dhruvrugs.global/</loc>
-<lastmod>2025-05-22T07:27:32+00:00</lastmod>
-<priority>1.00</priority>
-</url>
-<url>
-<loc>https://www.dhruvrugs.global/about/</loc>
-<lastmod>2025-05-22T07:27:32+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.dhruvrugs.global/luxury-collection/</loc>
-<lastmod>2025-05-22T07:27:32+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.dhruvrugs.global/hospitality-collection/</loc>
-<lastmod>2025-05-22T07:27:32+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.dhruvrugs.global/contact/</loc>
-<lastmod>2025-05-22T07:27:32+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.dhruvrugs.global/latest-project/</loc>
-<lastmod>2025-05-22T07:27:32+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.dhruvrugs.global/products/hand-knotted/</loc>
-<lastmod>2025-05-22T07:27:32+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.dhruvrugs.global/products/hand-loom/</loc>
-<lastmod>2025-05-22T07:27:32+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.dhruvrugs.global/products/hand-tufted/</loc>
-<lastmod>2025-05-22T07:27:32+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.dhruvrugs.global/products/flat-weave/</loc>
-<lastmod>2025-05-22T07:27:32+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.dhruvrugs.global/products/jute/</loc>
-<lastmod>2025-05-22T07:27:32+00:00</lastmod>
-<priority>0.80</priority>
-</url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 
+                           http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  
+  <!-- Dhruv Rugs International Website Sitemap -->
+  
+  <!-- Main Pages -->
+  <url>
+    <loc>https://www.dhruvrugs.global/</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>1.00</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://www.dhruvrugs.global/about/</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.80</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://www.dhruvrugs.global/contact/</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.80</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://www.dhruvrugs.global/latest-project/</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.80</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <!-- Collection Pages -->
+  <url>
+    <loc>https://www.dhruvrugs.global/luxury-collection/</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.90</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://www.dhruvrugs.global/hospitality-collection/</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.90</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <!-- Product Category Pages -->
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-knotted/</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.80</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-loom/</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.80</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-tufted/</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.80</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://www.dhruvrugs.global/products/flat-weave/</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.80</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://www.dhruvrugs.global/products/jute/</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.80</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <!-- Individual Product Pages - Hand Knotted -->
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-knotted/1</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-knotted/2</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-knotted/3</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-knotted/16</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-knotted/17</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-knotted/18</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-knotted/19</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-knotted/20</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-knotted/21</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-knotted/22</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-knotted/23</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-knotted/24</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-knotted/25</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-knotted/26</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-knotted/27</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-knotted/28</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-knotted/31</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-knotted/32</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-knotted/33</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-knotted/34</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-knotted/35</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-knotted/36</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Individual Product Pages - Hand Loom -->
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-loom/4</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-loom/5</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-loom/6</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-loom/37</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-loom/38</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-loom/39</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-loom/40</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-loom/41</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-loom/42</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-loom/43</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-loom/44</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-loom/45</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Individual Product Pages - Hand Tufted -->
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-tufted/7</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-tufted/8</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-tufted/9</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-tufted/46</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-tufted/47</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-tufted/48</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-tufted/49</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-tufted/50</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/hand-tufted/51</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Individual Product Pages - Flat Weave -->
+  <url>
+    <loc>https://www.dhruvrugs.global/products/flat-weave/10</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/flat-weave/11</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/flat-weave/12</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/flat-weave/52</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/flat-weave/53</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/flat-weave/54</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/flat-weave/55</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/flat-weave/56</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Individual Product Pages - Jute -->
+  <url>
+    <loc>https://www.dhruvrugs.global/products/jute/13</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/jute/14</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/jute/15</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/jute/56</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/jute/57</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/jute/58</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/jute/59</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/jute/60</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/jute/61</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/jute/62</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/jute/63</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/products/jute/64</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Luxury Collection Product Pages -->
+  <url>
+    <loc>https://www.dhruvrugs.global/luxury-collection/CL-05-001</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/luxury-collection/CL-05-002</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/luxury-collection/CL-05-003</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/luxury-collection/CL-05-004</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/luxury-collection/CL-05-005</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/luxury-collection/CL-05-006</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/luxury-collection/CL-05-007</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/luxury-collection/CL-05-08</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Hospitality Collection Product Pages -->
+  <url>
+    <loc>https://www.dhruvrugs.global/hospitality-collection/1</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/hospitality-collection/2</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/hospitality-collection/3</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/hospitality-collection/4</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/hospitality-collection/5</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/hospitality-collection/6</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/hospitality-collection/7</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/hospitality-collection/8</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/hospitality-collection/9</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/hospitality-collection/10</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/hospitality-collection/11</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/hospitality-collection/12</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/hospitality-collection/13</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/hospitality-collection/14</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/hospitality-collection/15</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/hospitality-collection/16</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/hospitality-collection/17</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/hospitality-collection/18</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/hospitality-collection/19</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/hospitality-collection/20</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/hospitality-collection/21</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/hospitality-collection/22</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/hospitality-collection/23</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.dhruvrugs.global/hospitality-collection/24</loc>
+    <lastmod>2025-06-27T07:27:32+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
 </urlset>

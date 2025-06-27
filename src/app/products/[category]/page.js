@@ -1,179 +1,581 @@
-// app/products/[category]/page.js
+// app/products/[category]/[productId]/page.js
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { ChevronRight, ZoomIn } from "lucide-react";
+import Head from "next/head";
+import {
+  categoryDescriptions,
+  productsCategoryCollection,
+} from "@/lib/data";
+import ImageModal from "@/components/common/ImageModal";
+import RelatedProducts from "@/components/products/RelatedProducts";
+import Reviews from "@/components/common/Reviews";
+import QuoteRequestForm from "@/components/common/QuoteRequestForm";
 
-// Import data directly to simplify debugging
-import { categoryDescriptions, productsCategoryCollection } from "@/lib/data";
+// Helper function to format the category
+const formatCategory = (category) => {
+  return category
+    .toLowerCase() // Convert to lowercase
+    .replace(/-/g, " ") // Replace hyphens with spaces
+    .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitalize first letters
+};
 
-export default function ProductsPage({ params }) {
-  // Use React.use to unwrap params if available, otherwise fall back to direct access
+// Comprehensive keyword strategy by category
+const getKeywordsByCategory = (category, product) => {
+  const categoryKeywords = {
+    "Hand Knotted": [
+      "hand knotted rugs", "luxury hand knotted carpets", "premium wool rugs", 
+      "traditional handmade rugs", "Indian hand knotted rugs", "handcrafted Persian rugs",
+      "bespoke hand knotted carpets", "artisan woven rugs"
+    ],
+    "Hand Loom": [
+      "hand loom rugs", "handwoven carpets", "modern hand loom rugs", 
+      "contemporary woven rugs", "minimalist design rugs", "traditional weaving rugs",
+      "hand woven floor coverings", "artisan loom carpets"
+    ],
+    "Hand Tufted": [
+      "hand tufted rugs", "soft hand tufted carpets", "geometric pattern rugs", 
+      "modern tufted rugs", "abstract design carpets", "luxury tufted rugs",
+      "custom hand tufted carpets", "designer tufted rugs"
+    ],
+    "Flat Weave": [
+      "flat weave rugs", "kilim rugs", "flat woven carpets", 
+      "durable flat weave", "high traffic rugs", "reversible flat weave rugs",
+      "contemporary kilim carpets", "flat weave floor coverings"
+    ],
+    "Jute": [
+      "natural jute rugs", "eco-friendly rugs", "sustainable carpets", 
+      "organic jute rugs", "braided jute rugs", "environmentally friendly rugs",
+      "natural fiber carpets", "biodegradable rugs"
+    ]
+  };
+
+  const commonKeywords = [
+    "luxury handcrafted rugs from India", "premium wool hand knotted carpets",
+    "custom size handmade rugs", "Indian rug manufacturers", "Bhadohi handmade rugs",
+    "commercial carpet suppliers", "hospitality industry rugs", "luxury hotel carpets",
+    "bespoke luxury rug collection", "handmade carpets India", "traditional Indian rugs"
+  ];
+
+  const categorySpecific = categoryKeywords[product.category] || [];
+  const materialKeywords = product.material ? [`${product.material.toLowerCase()} rugs`, `${product.material.toLowerCase()} carpets`] : [];
+  const patternKeywords = product.pattern ? [`${product.pattern.toLowerCase()} pattern rugs`] : [];
+  const styleKeywords = product.style ? [`${product.style.toLowerCase()} style rugs`] : [];
+
+  return [...categorySpecific, ...commonKeywords, ...materialKeywords, ...patternKeywords, ...styleKeywords];
+};
+
+// Enhanced meta data generation function
+const generateMetaTags = (product, category) => {
+  if (!product) return {};
+  
+  const formattedCategory = formatCategory(category);
+  const baseUrl = "https://www.dhruvrugs.global"; // Updated with actual domain
+  const keywords = getKeywordsByCategory(category, product);
+  
+  // Enhanced title with more keywords
+  const titleKeywords = product.category === "Hand Knotted" ? "Luxury Hand Knotted" :
+                       product.category === "Hand Loom" ? "Premium Hand Loom" :
+                       product.category === "Hand Tufted" ? "Soft Hand Tufted" :
+                       product.category === "Flat Weave" ? "Durable Flat Weave" :
+                       "Natural Jute";
+  
+  // Enhanced description with keyword integration
+  const enhancedDescription = product.category === "Hand Knotted" 
+    ? `Discover our luxury ${product.name} - premium hand knotted carpets from India. Traditional handmade rugs crafted with ${product.material} using artisan weaving techniques. ${product.pattern} pattern, ${product.style} style. Bespoke luxury rug collection available on request.`
+    : product.category === "Hand Loom"
+    ? `Explore our ${product.name} - contemporary hand loom rugs with minimalist design. Modern handwoven carpets made with ${product.material}. ${product.pattern} pattern, ${product.style} style. Custom size handmade rugs available.`
+    : product.category === "Hand Tufted"
+    ? `Shop our ${product.name} - soft hand tufted carpets with geometric patterns. Modern tufted rugs crafted with ${product.material} using hand tufting techniques. ${product.pattern} design, ${product.style} style. Designer luxury rugs on request.`
+    : product.category === "Flat Weave"
+    ? `Browse our ${product.name} - durable flat weave kilim rugs perfect for high traffic areas. Flat woven carpets made with ${product.material}. ${product.pattern} pattern, ${product.style} style. Commercial grade rugs available.`
+    : `Discover our ${product.name} - natural jute rugs that are eco-friendly and sustainable. Organic jute carpets with braided construction using ${product.material}. ${product.pattern} pattern, ${product.style} style. Environmentally conscious floor coverings.`;
+  
+  return {
+    title: `${titleKeywords} ${product.name} - ${formattedCategory} | Dhruv Rugs International`,
+    description: enhancedDescription,
+    keywords: keywords.join(", "),
+    openGraph: {
+      title: `${titleKeywords} ${product.name} - Indian Handcrafted Rugs`,
+      description: `Premium ${product.material} ${formattedCategory.toLowerCase()} rug with ${product.pattern} pattern. Luxury handcrafted carpets from Bhadohi, India. ${product.productionType} craftsmanship with custom sizing available.`,
+      image: product.image.startsWith('http') ? product.image : `${baseUrl}${product.image}`,
+      url: `${baseUrl}/products/${category}/${product.id}`,
+      type: 'product',
+      site_name: 'Dhruv Rugs International - Indian Rug Manufacturers'
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${titleKeywords} ${product.name} - Luxury Indian Rugs`,
+      description: `Premium ${product.material} ${formattedCategory.toLowerCase()} rug with ${product.pattern} pattern. Handcrafted in India with traditional techniques.`,
+      image: product.image.startsWith('http') ? product.image : `${baseUrl}${product.image}`,
+    },
+    schema: {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": `${titleKeywords} ${product.name}`,
+      "image": [
+        product.image.startsWith('http') ? product.image : `${baseUrl}${product.image}`
+      ],
+      "description": `${product.name} - ${formattedCategory} rug made with ${product.material} using ${product.productionType} technique. Luxury handcrafted carpets from Indian rug manufacturers in Bhadohi.`,
+      "sku": product.productCode,
+      "mpn": product.productId,
+      "brand": {
+        "@type": "Brand",
+        "name": "Dhruv Rugs International"
+      },
+      "manufacturer": {
+        "@type": "Organization",
+        "name": "Dhruv Rugs International - Indian Rug Manufacturers",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "IN",
+          "addressRegion": "Uttar Pradesh",
+          "addressLocality": "Bhadohi"
+        }
+      },
+      "category": `${formattedCategory} Rugs`,
+      "material": product.material,
+      "pattern": product.pattern,
+      "color": product.color || "Various",
+      "countryOfOrigin": product.origin,
+      "keywords": keywords.slice(0, 10).join(", "),
+      "aggregateRating": product.rating ? {
+        "@type": "AggregateRating",
+        "ratingValue": product.rating,
+        "bestRating": "5",
+        "worstRating": "1",
+        "reviewCount": product.reviews?.length || 1
+      } : null,
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "USD",
+        "price": "0",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "price": "On Request",
+          "priceCurrency": "USD"
+        },
+        "seller": {
+          "@type": "Organization",
+          "name": "Dhruv Rugs International - Premium Indian Rug Manufacturers"
+        }
+      }
+    }
+  };
+};
+
+// Custom Head component for meta tags
+const ProductMeta = ({ product, category }) => {
+  const metaTags = generateMetaTags(product, category);
+  
+  if (!product) return null;
+  
+  return (
+    <Head>
+      {/* Basic Meta Tags */}
+      <title>{metaTags.title}</title>
+      <meta name="description" content={metaTags.description} />
+      <meta name="keywords" content={metaTags.keywords} />
+      <meta name="robots" content="index, follow" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="canonical" href={metaTags.openGraph.url} />
+      
+      {/* Open Graph Tags */}
+      <meta property="og:title" content={metaTags.openGraph.title} />
+      <meta property="og:description" content={metaTags.openGraph.description} />
+      <meta property="og:image" content={metaTags.openGraph.image} />
+      <meta property="og:url" content={metaTags.openGraph.url} />
+      <meta property="og:type" content={metaTags.openGraph.type} />
+      <meta property="og:site_name" content={metaTags.openGraph.site_name} />
+      <meta property="product:brand" content="Dhruv Rugs" />
+      <meta property="product:availability" content="in stock" />
+      <meta property="product:condition" content="new" />
+      <meta property="product:price:amount" content="On Request" />
+      <meta property="product:price:currency" content="USD" />
+      
+      {/* Twitter Card Tags */}
+      <meta name="twitter:card" content={metaTags.twitter.card} />
+      <meta name="twitter:title" content={metaTags.twitter.title} />
+      <meta name="twitter:description" content={metaTags.twitter.description} />
+      <meta name="twitter:image" content={metaTags.twitter.image} />
+      
+      {/* Additional SEO Tags */}
+      <meta name="author" content="Dhruv Rugs" />
+      <meta name="publisher" content="Dhruv Rugs" />
+      <meta name="language" content="English" />
+      <meta name="revisit-after" content="7 days" />
+      <meta name="distribution" content="global" />
+      <meta name="rating" content="general" />
+      
+      {/* Schema.org Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(metaTags.schema)
+        }}
+      />
+    </Head>
+  );
+};
+
+export default function ProductDetailsCategory({ params }) {
+  // Handle params - either directly or with React.use based on availability
   const paramsObj = React.use ? React.use(params) : params;
-  const { category } = paramsObj;
+  const { category, productId } = paramsObj;
   
   const router = useRouter();
+  const [selectedTab, setSelectedTab] = useState("DESCRIPTION");
+  const [product, setProduct] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [zoomStyle, setZoomStyle] = useState({});
+  const [showZoomIcon, setShowZoomIcon] = useState(false);
+  const [showQuoteForm, setShowQuoteForm] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [debugInfo, setDebugInfo] = useState({});
 
-  // Normalize category from URL
-  const normalizedCategory = category
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-
-  // Filter products based on category
-  const filteredProducts = productsCategoryCollection.filter(
-    (product) => product.category === normalizedCategory
-  );
+  const formattedCategory = formatCategory(category);
 
   useEffect(() => {
-    // Set loading to false once component mounts
+    // Detailed debugging
+    console.log("=== PRODUCT LOOKUP DEBUG INFO ===");
+    console.log("Category param:", category);
+    console.log("ProductId param:", productId);
+    console.log("Formatted category:", formattedCategory);
+    
+    // Log all available products for this category
+    console.log("All products:", productsCategoryCollection);
+    
+    const productsInCategory = productsCategoryCollection.filter(
+      item => item.category.toLowerCase().replace(/\s+/g, "-") === category
+    );
+    
+    console.log(`Products in category "${category}":`, productsInCategory);
+    
+    // Try all possible matching strategies, with detailed logging
+    
+    // Strategy 1: Exact ID (as number) + category match
+    console.log("Strategy 1: Exact ID (as number) + category match");
+    let currentProduct = productsCategoryCollection.find(
+      item => 
+        Number(item.id) === Number(productId) &&
+        item.category.toLowerCase().replace(/\s+/g, "-") === category
+    );
+    console.log("Result of Strategy 1:", currentProduct);
+    
+    // Strategy 2: Exact ID (as string) + category match
+    if (!currentProduct) {
+      console.log("Strategy 2: Exact ID (as string) + category match");
+      currentProduct = productsCategoryCollection.find(
+        item => 
+          String(item.id) === String(productId) &&
+          item.category.toLowerCase().replace(/\s+/g, "-") === category
+      );
+      console.log("Result of Strategy 2:", currentProduct);
+    }
+    
+    // Strategy 3: Just ID match (as number)
+    if (!currentProduct) {
+      console.log("Strategy 3: Just ID match (as number)");
+      currentProduct = productsCategoryCollection.find(
+        item => Number(item.id) === Number(productId)
+      );
+      console.log("Result of Strategy 3:", currentProduct);
+    }
+    
+    // Strategy 4: Just ID match (as string)
+    if (!currentProduct) {
+      console.log("Strategy 4: Just ID match (as string)");
+      currentProduct = productsCategoryCollection.find(
+        item => String(item.id) === String(productId)
+      );
+      console.log("Result of Strategy 4:", currentProduct);
+    }
+    
+    // Collect debug info
+    const debugData = {
+      params: { category, productId },
+      formattedCategory,
+      totalProducts: productsCategoryCollection.length,
+      productsInCategory: productsInCategory.length,
+      productsWithMatchingId: productsCategoryCollection.filter(
+        item => String(item.id) === String(productId)
+      ).length,
+      foundProduct: !!currentProduct
+    };
+    setDebugInfo(debugData);
+    
+    console.log("Debug data:", debugData);
+    
+    if (currentProduct) {
+      setProduct(currentProduct);
+      console.log("PRODUCT FOUND:", currentProduct);
+    } else {
+      console.log("PRODUCT NOT FOUND");
+    }
+    
     setLoading(false);
-  }, []);
+  }, [productId, category, formattedCategory]);
 
-  const handleProductClick = (productId) => {
-    router.push(`/products/${category}/${productId}`);
-  };
-
-  // Get description from normalized category
-  const description =
-    categoryDescriptions[normalizedCategory] || "Description not available.";
-
-  // Function to normalize image paths
-  const normalizeImagePath = (imagePath) => {
-    if (!imagePath) return '/images/placeholder.jpg';
+  // Get related products that match the category
+  const getRandomProducts = () => {
+    if (!productsCategoryCollection || !product) return [];
     
-    // Handle external URLs
-    if (imagePath.startsWith('http')) {
-      return imagePath;
+    const productCategory = product.category;
+    
+    const sameCategory = productsCategoryCollection.filter(
+      (item) => 
+        item.id !== product.id && 
+        item.category === productCategory
+    );
+    
+    // If we have enough products in the same category, use those
+    if (sameCategory.length >= 4) {
+      return sameCategory.sort(() => 0.5 - Math.random()).slice(0, 4);
     }
     
-    // Remove '/public/' if it exists in the path
-    let normalizedPath = imagePath.replace('/public/', '/');
+    // Otherwise get any other products to fill the related section
+    const otherProducts = productsCategoryCollection.filter(
+      (item) => item.id !== product.id
+    );
     
-    // Make sure the path starts with a slash
-    if (!normalizedPath.startsWith('/')) {
-      normalizedPath = '/' + normalizedPath;
-    }
-    
-    return normalizedPath;
+    return otherProducts.sort(() => 0.5 - Math.random()).slice(0, 4);
   };
+
+  const relatedProducts = product ? getRandomProducts() : [];
+
+  const handleImageHover = (e) => {
+    const image = e.currentTarget;
+    const { left, top, width, height } = image.getBoundingClientRect();
+
+    const handleMouseMove = (e) => {
+      const x = ((e.clientX - left) / width) * 100;
+      const y = ((e.clientY - top) / height) * 100;
+
+      setZoomStyle({
+        transform: "scale(2)",
+        transformOrigin: `${x}% ${y}%`,
+      });
+    };
+
+    image.addEventListener("mousemove", handleMouseMove);
+    image.addEventListener("mouseleave", () => {
+      setZoomStyle({});
+      setShowZoomIcon(false);
+    });
+  };
+
+  const renderStars = (rating) => {
+    if (!rating) return "";
+    
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 === 0.5;
+    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+    return (
+      "★".repeat(fullStars) + (hasHalfStar ? "☆" : "") + "☆".repeat(emptyStars)
+    );
+  };
+
+  if (loading) {
+    return <div className="min-h-screen flex items-center justify-center">Loading product details...</div>;
+  }
+
+  if (!product) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center">
+        <h1 className="text-2xl font-bold mb-4">Product Not Found</h1>
+        <div className="bg-red-50 border border-red-200 p-4 rounded-md mb-4 max-w-lg">
+          <p className="text-red-700 font-semibold">We couldn't find the product you're looking for.</p>
+          <p className="text-gray-700 mt-2">Debug information:</p>
+          <pre className="bg-gray-100 p-2 mt-2 text-xs overflow-auto max-h-40 rounded">
+            {JSON.stringify(debugInfo, null, 2)}
+          </pre>
+        </div>
+        <button
+          onClick={() => router.push(`/products/${category}`)}
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+          Back to {formattedCategory} Products
+        </button>
+      </div>
+    );
+  }
+
+  const description = categoryDescriptions[product.category] || "Category description not available.";
 
   return (
-    <div className="min-h-screen">
-      {/* Custom Banner Component - Using direct styling like HeroSection */}
-      <div style={{ position: "relative", width: "100%", height: "250px" }}>
-        {/* Direct image element similar to HeroSection */}
-        <img 
-          src="/images/004_1.jpg"
-          alt={`${normalizedCategory} Banner`}
-          style={{ 
-            width: "100%", 
-            height: "100%", 
-            objectFit: "cover",
-            position: "absolute",
-            top: 0,
-            left: 0
-          }}
-        />
-        
-        {/* Dark overlay for better text readability */}
-        <div style={{ 
-          position: "absolute", 
-          top: 0, 
-          left: 0, 
-          width: "100%", 
-          height: "100%", 
-          backgroundColor: "rgba(0,0,0,0.4)",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center"
-        }}>
-          {/* Content */}
-          <div style={{ textAlign: "center", color: "white", padding: "0 20px" }}>
-            <h1 style={{ fontSize: "2.5rem", fontWeight: "bold", marginBottom: "0.5rem" }}>
-              {normalizedCategory}
-            </h1>
-            <p style={{ fontSize: "1.25rem", marginBottom: "1rem" }}>
-              Luxury Carpets for Premium Spaces
-            </p>
-            
-            {/* Breadcrumbs */}
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "8px" }}>
-              <Link href="/" style={{ color: "white", textDecoration: "none" }}>Home</Link>
-              <span>&gt;</span>
-              <span>{normalizedCategory}</span>
+    <>
+      {/* Meta Tags */}
+      <ProductMeta product={product} category={category} />
+      
+      <div className="bg-gray-50 min-h-screen">
+        {/* Breadcrumb */}
+        <div className="container mx-auto px-4 pt-10 pb-5 flex items-center gap-2 text-sm">
+          <span
+            className="text-blue-600 text-xs tracking-[0.04rem] hover:underline cursor-pointer"
+            onClick={() => router.push("/")}
+          >
+            HOME
+          </span>
+          <ChevronRight className="w-4 h-4" />
+          <span
+            className="text-blue-600 text-xs tracking-[0.04rem] hover:underline cursor-pointer"
+            onClick={() => router.push(`/products/${category}`)}
+          >
+            {formattedCategory.toUpperCase()}
+          </span>
+          <ChevronRight className="w-4 h-4" />
+          <span className="tracking-[0.04rem] text-xs uppercase">
+            {product.name}
+          </span>
+        </div>
+
+        {/* Product Section */}
+        <div className="container mx-auto px-4 py-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Product Image */}
+            <div className="relative">
+              <div
+                className="relative overflow-hidden rounded-lg cursor-zoom-in"
+                onMouseEnter={(e) => {
+                  setShowZoomIcon(true);
+                  handleImageHover(e);
+                }}
+                onClick={() => setShowModal(true)}
+                style={{ aspectRatio: "1/1" }}
+              >
+                <img
+                  src={product.image}
+                  alt={`${titleKeywords} ${product.name} - ${formattedCategory} made with ${product.material} using ${product.productionType} technique. Luxury handcrafted Indian rugs from Bhadohi manufacturers`}
+                  className="w-full h-full object-cover transition-transform duration-200"
+                  style={zoomStyle}
+                  onError={(e) => {
+                    console.error(`Error loading image: ${product.image}`);
+                    e.target.src = '/images/placeholder.jpg';
+                    e.target.onerror = null;
+                  }}
+                />
+                {showZoomIcon && (
+                  <div className="absolute top-4 right-4 bg-white/80 p-2 rounded-full">
+                    <ZoomIn className="w-6 h-6 text-gray-600" />
+                  </div>
+                )}
+              </div>
+              <p className="text-center text-sm text-gray-500 mt-2">
+                Roll over image to zoom in. Click to open expanded view
+              </p>
+            </div>
+
+            {/* Product Info */}
+            <div>
+              <h1 className="text-3xl font-semibold tracking-[0.05rem] mb-6">
+                {product.name}
+              </h1>
+              {/* Product details grid */}
+              <ul className="grid grid-cols-1 gap-4 max-sm:ps-5 list-disc">
+                {Object.entries({
+                  Availability: product.availability || "N/A",
+                  Rating: renderStars(product.rating),
+                  "Product Code": product.productCode || "N/A",
+                  Pattern: product.pattern || "N/A",
+                  Style: product.style || "N/A",
+                  Material: product.material || "N/A",
+                  "Production Type": product.productionType || "N/A",
+                  "Pile Height": product.pileHeight || "N/A",
+                  Shape: product.shape || "N/A",
+                  Size: product.size || "N/A",
+                  ID: product.productId || product.id || "N/A",
+                  Customization: product.customization || "N/A",
+                  Origin: product.origin || "N/A",
+                }).map(([key, value]) => (
+                  <li key={key} className="flex text-sm items-start gap-2">
+                    <span className="font-medium text-start min-w-[140px]">
+                      {key}
+                    </span>
+                    <span className="text-gray-600">{value || "N/A"}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedProduct(product);
+                  setShowQuoteForm(true);
+                }}
+                className="mt-8 bg-gray-800 text-white px-8 py-3 rounded-lg hover:bg-gray-700 transition-colors"
+              >
+                Request Quotes
+              </button>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div className="mx-auto">
-        {/* product category */}
-        <div className="md:px-14 px-5 py-8 flex flex-col items-start bg-gray-200">
-          <h3 className="md:text-2xl text-xl font-bold mb-4 tracking-[0.05rem]">
-            {normalizedCategory} Rugs
-          </h3>
-          <p className="text-gray-700 max-sm:text-sm text-start tracking-[0.05rem]">
-            {description}
-          </p>
-        </div>
-
-        <div className="container mx-auto px-4 py-10">
-          {loading ? (
-            <p className="text-center">Loading products...</p>
-          ) : (
-            <>
-              {/* Product Grid */}
-              {filteredProducts.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                  {filteredProducts.map((product) => (
-                    <div
-                      key={product.id}
-                      onClick={() => handleProductClick(product.id)}
-                      className="group bg-white cursor-pointer border border-gray-500 p-2 mb-5 rounded-md overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
-                    >
-                      {/* Product Image - using inline styles like HeroSection */}
-                      <div style={{ position: "relative", width: "100%", height: "280px", overflow: "hidden" }}>
-                        <img
-                          src={normalizeImagePath(product.image)}
-                          alt={product.name}
-                          style={{ 
-                            width: "100%", 
-                            height: "100%", 
-                            objectFit: "cover",
-                            position: "absolute",
-                            top: 0,
-                            left: 0
-                          }}
-                          onError={(e) => {
-                            console.log('Failed to load image:', product.image);
-                            e.target.onerror = null;
-                            e.target.src = '/images/placeholder.jpg'; // Fallback image
-                          }}
-                        />
-                      </div>
-
-                      {/* Product Info */}
-                      <div className="py-2 px-6">
-                        <h3 className="text-lg font-semibold tracking-[0.04rem] text-gray-900 mb-2">
-                          {product.name}
-                        </h3>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <p className="text-center text-gray-600">
-                  No products found in this category.
+          {/* Description Tabs */}
+          <div className="mt-16">
+            <div className="border-b border-gray-200">
+              <div className="flex justify-center gap-8">
+                <button
+                  className={`pb-4 text-sm tracking-[0.05rem] font-medium ${
+                    selectedTab === "DESCRIPTION"
+                      ? "border-b-2 border-blue-600 text-blue-600"
+                      : "text-gray-600"
+                  }`}
+                  onClick={() => setSelectedTab("DESCRIPTION")}
+                >
+                  DESCRIPTION
+                </button>
+                <button
+                  className={`pb-4 text-sm tracking-[0.05rem] font-medium ${
+                    selectedTab === "REVIEWS"
+                      ? "border-b-2 border-blue-600 text-blue-600"
+                      : "text-gray-600"
+                  }`}
+                  onClick={() => setSelectedTab("REVIEWS")}
+                >
+                  REVIEWS ({product.reviews?.length || 0})
+                </button>
+              </div>
+            </div>
+            <div className="py-6">
+              {selectedTab === "DESCRIPTION" ? (
+                <p className="text-gray-600 text-start text-sm tracking-[0.03rem] leading-relaxed">
+                  {description}
                 </p>
+              ) : (
+                <Reviews product={product} setProduct={setProduct} />
               )}
-            </>
+            </div>
+          </div>
+
+          {/* Related Products */}
+          {relatedProducts.length > 0 ? (
+            <RelatedProducts
+              relatedProducts={relatedProducts}
+              category={product?.category}
+            />
+          ) : (
+            <p className="text-center text-gray-600 mt-12">No related products found.</p>
           )}
         </div>
+
+        {/* Image Modal */}
+        {showModal && (
+          <ImageModal setShowModal={setShowModal} product={product} />
+        )}
+
+        {showQuoteForm && selectedProduct && (
+          <QuoteRequestForm
+            isOpen={showQuoteForm}
+            onClose={() => setShowQuoteForm(false)}
+            productDetails={selectedProduct}
+            setShowQuoteForm={setShowQuoteForm}
+          />
+        )}
       </div>
-    </div>
+    </>
   );
 }

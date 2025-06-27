@@ -1,5 +1,9 @@
 // app/sitemap.js - Dynamic sitemap generation for Next.js 13+
-import { hospitalityCollection, luxuryCollection, productsCategoryCollection } from '@/lib/data';
+import { 
+  hospitalityCollection, 
+  luxuryCollection, 
+  productsCategoryCollection 
+} from '@/lib/data';
 
 export default function sitemap() {
   const baseUrl = 'https://www.dhruvrugs.global';
@@ -10,7 +14,7 @@ export default function sitemap() {
     {
       url: baseUrl,
       lastModified: currentDate,
-      changeFrequency: 'daily',
+      changeFrequency: 'weekly',
       priority: 1.0,
     },
     {
@@ -29,19 +33,19 @@ export default function sitemap() {
       url: `${baseUrl}/latest-project`,
       lastModified: currentDate,
       changeFrequency: 'weekly',
-      priority: 0.7,
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/luxury-collection`,
       lastModified: currentDate,
       changeFrequency: 'weekly',
-      priority: 0.8,
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/hospitality-collection`,
       lastModified: currentDate,
       changeFrequency: 'weekly',
-      priority: 0.8,
+      priority: 0.9,
     },
   ];
 
@@ -64,7 +68,7 @@ export default function sitemap() {
     url: `${baseUrl}/hospitality-collection/${product.id}`,
     lastModified: currentDate,
     changeFrequency: 'monthly',
-    priority: 0.6,
+    priority: 0.7,
   }));
 
   // Individual product routes from luxury collection
@@ -72,12 +76,11 @@ export default function sitemap() {
     url: `${baseUrl}/luxury-collection/${product.id}`,
     lastModified: currentDate,
     changeFrequency: 'monthly',
-    priority: 0.6,
+    priority: 0.7,
   }));
 
   // Individual product routes from category collection
   const categoryProductRoutes = productsCategoryCollection.map(product => {
-    // Convert category name to URL format
     const categorySlug = product.category.toLowerCase().replace(/\s+/g, '-');
     return {
       url: `${baseUrl}/products/${categorySlug}/${product.id}`,
@@ -86,8 +89,7 @@ export default function sitemap() {
       priority: 0.6,
     };
   });
-
-  // Combine all routes
+   
   return [
     ...staticRoutes,
     ...categoryRoutes,
