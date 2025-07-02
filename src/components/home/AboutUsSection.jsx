@@ -1,5 +1,4 @@
 'use client';
-
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -26,10 +25,10 @@ const AboutUsSection = () => {
           </Link>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-          {/* Left Column - Content */}
-          <div className="space-y-6">
-            <p className="text-gray-600 leading-relaxed">
+        {/* Centered Content */}
+        <div className="flex justify-center">
+          <div className="max-w-3xl space-y-6">
+            <p className="text-gray-600 leading-relaxed text-center">
               It is our proud pleasure to present you our good designs with eye
               catching colour scheme. Dhruv Rugs International was established in 2020,
               and since then we've been crafting excellence in every thread.
@@ -42,7 +41,7 @@ const AboutUsSection = () => {
                 "Expert Weavers",
                 "Premium Materials",
               ].map((feature) => (
-                <div key={feature} className="flex items-center space-x-2">
+                <div key={feature} className="flex items-center justify-center space-x-2">
                   <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
                   <span className="text-sm text-gray-700">{feature}</span>
                 </div>
@@ -51,28 +50,12 @@ const AboutUsSection = () => {
 
             {/* Quick Vision Statement */}
             <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-              <p className="text-gray-700 italic tracking-[0.03rem]">
+              <p className="text-gray-700 italic tracking-[0.03rem] text-center">
                 "Our organization believes in making new ways and creating new
                 products, striving to provide the best quality and most
                 competitive rates in the industry."
               </p>
             </div>
-          </div>
-
-          {/* Right Column - Leadership */}
-          <div className="relative">
-            <div className="relative overflow-hidden rounded-xl shadow-md bg-white w-full h-[400px]">
-              <Image
-                src="/images/about-us.jpg"
-                alt="Leadership"
-                fill
-                className="object-cover"
-              />
-            </div>
-
-            {/* Decorative Elements */}
-            <div className="absolute -z-10 -bottom-6 -right-6 w-24 h-24 border-r-2 border-b-2 border-gray-200"></div>
-            <div className="absolute -z-10 -top-6 -left-6 w-24 h-24 border-l-2 border-t-2 border-gray-200"></div>
           </div>
         </div>
       </div>

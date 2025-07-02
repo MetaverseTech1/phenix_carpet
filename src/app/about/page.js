@@ -80,23 +80,23 @@ const AboutPage = ({ teamMembers }) => {
       />
 
       <div className="container mx-auto px-4 max-w-7xl py-16 md:py-24">
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-          {/* Left Column - Content */}
-          <div className="space-y-6">
+        {/* Main Introduction Section - Centered */}
+        <div className="flex justify-center mb-20">
+          <div className="max-w-3xl text-center space-y-6">
             <p className="text-gray-600 leading-relaxed">
               It is our proud pleasure to present you our good designs with eye
               catching colour scheme. Dhruv Rugs International was established in 2020,
               and since then we've been crafting excellence in every thread.
             </p>
 
-            <div className="grid grid-cols-2 gap-4 py-6">
+            <div className="grid grid-cols-2 gap-4 max-w-md mx-auto py-6">
               {[
                 "Hand Knots",
                 "Natural Dyes",
                 "Expert Weavers",
                 "Premium Materials",
               ].map((feature) => (
-                <div key={feature} className="flex items-center space-x-2">
+                <div key={feature} className="flex items-center justify-center space-x-2">
                   <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
                   <span className="text-sm text-gray-700">{feature}</span>
                 </div>
@@ -112,56 +112,44 @@ const AboutPage = ({ teamMembers }) => {
               </p>
             </div>
           </div>
+        </div>
 
-          {/* Right Column - Leadership */}
-          <div className="relative">
-            <div className="overflow-hidden rounded-xl shadow-md bg-white relative h-80 w-full">
-              <Image
-                src="/images/about-us.jpg"
-                alt="Leadership"
-                fill
-                className="object-cover"
-              />
+        {/* Mission and Values - Centered Grid */}
+        <div className="flex justify-center mb-20">
+          <div className="max-w-5xl w-full">
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="bg-gray-50 p-8 rounded-2xl shadow-sm text-center">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-6">
+                  Our Expertise
+                </h3>
+                <p className="text-gray-700">
+                  Dhruv Rugs International is running by Mr. Pawan Maurya with Mrs. Babita
+                  Maurya. We are second generation of manufacturer and exporter of
+                  Hand knots, Handloom & Hand tufted and Woolen Carpets in India.
+                  We specialized in natural dyes carpets. We get our carpets weaved
+                  by expert weavers. We always use qualitative raw materials
+                  including good wool, viscose, silk etc.
+                </p>
+              </div>
+              <div className="bg-gray-50 p-8 rounded-2xl shadow-sm text-center">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-6">
+                  Our Vision
+                </h3>
+                <p className="text-gray-700">
+                  Our organization believes in making new ways and creating new
+                  products. We have always strived to provide the best product
+                  possible and most competitive rates in the industry. Our company
+                  is moving towards the advancement in the path of prosper- ity,
+                  making an indelible mark in the industry by the virtue of its
+                  optimum quality products, which have a vivid and striking
+                  potential.
+                </p>
+              </div>
             </div>
-
-            {/* Decorative Elements */}
-            <div className="absolute -z-10 -bottom-6 -right-6 w-24 h-24 border-r-2 border-b-2 border-gray-200"></div>
-            <div className="absolute -z-10 -top-6 -left-6 w-24 h-24 border-l-2 border-t-2 border-gray-200"></div>
           </div>
         </div>
 
-        {/* Mission and Values */}
-        <div className="grid md:grid-cols-2 gap-12 mt-[5rem] mb-20">
-          <div className="bg-gray-50 p-8 rounded-2xl shadow-sm">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-6">
-              Our Expertise
-            </h3>
-            <p className="text-gray-700 mb-4">
-              Dhruv Rugs International is running by Mr. Pawan Maurya with Mrs. Babita
-              Maurya. We are second generation of manufacturer and exporter of
-              Hand knots, Handloom & Hand tufted and Woolen Carpets in India.
-              We specialized in natural dyes carpets. We get our carpets weaved
-              by expert weavers. We always use qualitative raw materials
-              including good wool, viscose, silk etc.
-            </p>
-          </div>
-          <div className="bg-gray-50 p-8 rounded-2xl shadow-sm">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-6">
-              Our Vision
-            </h3>
-            <p className="text-gray-700 mb-4">
-              Our organization believes in making new ways and creating new
-              products. We have always strived to provide the best product
-              possible and most competitive rates in the industry. Our company
-              is moving towards the advancement in the path of prosper- ity,
-              making an indelible mark in the industry by the virtue of its
-              optimum quality products, which have a vivid and striking
-              potential.
-            </p>
-          </div>
-        </div>
-
-        {/* Business Objectives */}
+        {/* Business Objectives - Already Centered */}
         <div className="mb-20">
           <div className="bg-blue-50 p-8 rounded-2xl">
             <h3 className="text-2xl font-semibold text-gray-900 mb-6 text-center">
@@ -171,7 +159,7 @@ const AboutPage = ({ teamMembers }) => {
               Dhruv Rugs International built its business on 3 primary objectives –
               Innovation, quality selection & prompt service.
             </p>
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
               {["Innovation", "Quality Selection", "Prompt Service"].map(
                 (objective) => (
                   <div
@@ -188,9 +176,9 @@ const AboutPage = ({ teamMembers }) => {
           </div>
         </div>
 
-        {/* Market Presence */}
+        {/* Market Presence - Already Centered */}
         <div className="mb-20">
-          <div className="max-w-3xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-center">
             <p className="text-lg text-gray-700 mb-6">
               We pride ourselves on supplying independent home furnishing
               retailers, chain stores & internet vendors throughout the US,
@@ -206,29 +194,33 @@ const AboutPage = ({ teamMembers }) => {
           </div>
         </div>
 
-        {/* Core Values Section */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {sections.map((section, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-lg p-6 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
-            >
-              <div className="flex flex-col items-center text-center">
-                <div className="mb-4 p-3 rounded-full bg-gray-50 text-blue-600">
-                  {section.icon}
+        {/* Core Values Section - Centered Grid */}
+        <div className="flex justify-center mb-16">
+          <div className="max-w-6xl w-full">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {sections.map((section, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-lg p-6 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+                >
+                  <div className="flex flex-col items-center text-center">
+                    <div className="mb-4 p-3 rounded-full bg-gray-50 text-blue-600">
+                      {section.icon}
+                    </div>
+                    <h3 className="text-xl font-bold mb-4 text-gray-800">
+                      {section.title}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      {section.content}
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold mb-4 text-gray-800">
-                  {section.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {section.content}
-                </p>
-              </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
 
-        {/* Clients Section */}
+        {/* Clients Section - Already Centered */}
         <div className="text-center mb-8">
           <div className="py-5">
             <h2 className="text-3xl tracking-[0.05rem] font-bold mb-3 text-gray-800">
@@ -238,7 +230,7 @@ const AboutPage = ({ teamMembers }) => {
               We provide quality carpets to countries like
             </p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 pb-5 py-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 pb-5 py-8 max-w-5xl mx-auto">
             {countries.map((country) => (
               <div key={country.code} className="flex flex-col items-center">
                 <div className="mb-3 rounded overflow-hidden shadow-sm relative w-16 h-12">

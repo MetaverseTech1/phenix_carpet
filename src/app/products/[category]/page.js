@@ -22,7 +22,7 @@ const formatCategory = (category) => {
     .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitalize first letters
 };
 
-// Comprehensive keyword strategy by category
+
 const getKeywordsByCategory = (category, product) => {
   const categoryKeywords = {
     "Hand Knotted": [
@@ -72,7 +72,7 @@ const generateMetaTags = (product, category) => {
   if (!product) return {};
   
   const formattedCategory = formatCategory(category);
-  const baseUrl = "https://www.dhruvrugs.global"; // Updated with actual domain
+  const baseUrl = "https://www.dhruvrugs.global"; 
   const keywords = getKeywordsByCategory(category, product);
   
   // Enhanced title with more keywords
