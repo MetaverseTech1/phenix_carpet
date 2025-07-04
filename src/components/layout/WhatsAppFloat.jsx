@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import { MessageCircle } from 'lucide-react';
+import { trackWhatsAppClick } from '@/lib/analytics';
 
-const WhatsAppFloat = ({ phoneNumber = "1234567890" }) => {
+const WhatsAppFloat = ({ phoneNumber = "8318600961" }) => {
   // Format phone number according to E.164 standard for WhatsApp
   const formatPhoneNumber = (number) => {
     if (!number) return '';
@@ -33,6 +34,7 @@ const WhatsAppFloat = ({ phoneNumber = "1234567890" }) => {
     
     return cleanNumber;
   };
+
   const [isHovered, setIsHovered] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
   const [rippleScale, setRippleScale] = useState(1);
@@ -50,8 +52,14 @@ const WhatsAppFloat = ({ phoneNumber = "1234567890" }) => {
   }, []);
 
   const handleClick = () => {
+    // Track the WhatsApp click
+    trackWhatsAppClick(null, null, 'floating_button');
+    
     const formattedNumber = formatPhoneNumber(phoneNumber);
-    const whatsappUrl = `https://wa.me/${formattedNumber}`;
+    
+    // Create WhatsApp message
+    const message = "Hi! I'm interested in your rugs and carpets. Could you please share your catalog and pricing?";
+    const whatsappUrl = `https://wa.me/${formattedNumber}?text=${encodeURIComponent(message)}`;
     
     // Debug logging
     console.log('Original number:', phoneNumber);

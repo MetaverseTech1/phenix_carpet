@@ -1,5 +1,3 @@
-// lib/analytics.js - Utility functions for tracking events
-
 // Track page views
 export const pageview = (url) => {
   if (typeof window !== 'undefined' && window.gtag) {
@@ -48,13 +46,55 @@ export const trackContactForm = (formType) => {
   });
 };
 
-// Track WhatsApp clicks
-export const trackWhatsAppClick = () => {
+// NEW: Track WhatsApp clicks with detailed context
+export const trackWhatsAppClick = (productName = null, category = null, source = 'general') => {
+  const label = productName 
+    ? `WhatsApp Click - ${category} - ${productName} - ${source}` 
+    : `WhatsApp Click - ${source}`;
+    
   event({
-    action: 'click',
+    action: 'whatsapp_click',
     category: 'engagement',
-    label: 'WhatsApp Contact',
+    label: label,
+    value: 1
   });
+  
+  // GA4 enhanced event
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'generate_lead', {
+      currency: 'INR',
+      value: 50,
+      lead_type: 'whatsapp_inquiry',
+      source: source,
+      product_category: category || 'general',
+      product_name: productName || 'general_inquiry'
+    });
+  }
+};
+
+
+export const trackWhatsAppInquiry = (productName = null, category = null, inquiryType = 'general') => {
+  const label = productName 
+    ? `WhatsApp Inquiry - ${category} - ${productName}` 
+    : `WhatsApp Inquiry - ${inquiryType}`;
+    
+  event({
+    action: 'generate_lead',
+    category: 'engagement',
+    label: label,
+    value: 1
+  });
+  
+  // GA4 conversion event
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'generate_lead', {
+      currency: 'INR',
+      value: 75, // Higher value for actual inquiries
+      lead_type: 'whatsapp_inquiry',
+      product_category: category || 'general',
+      product_name: productName || 'general_inquiry'
+    });
+  }
 };
 
 // Track phone clicks
