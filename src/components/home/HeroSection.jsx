@@ -3,53 +3,16 @@
 import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
-// Add CSS for responsiveness
-const responsiveStyles = `
-@media (max-width: 768px) {
-  .hero-container {
-    height: 350px !important;
-  }
-  
-  .hero-title {
-    font-size: 1.8rem !important;
-  }
-  
-  .hero-description {
-    font-size: 1rem !important;
-  }
-  
-  .hero-button {
-    padding: 8px 20px !important;
-    font-size: 0.9rem !important;
-  }
-}
+const HeroSection = ({ slides = [] }) => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [preloadedImages, setPreloadedImages] = useState(new Set());
+  const router = useRouter();
 
-@media (max-width: 480px) {
-  .hero-container {
-    height: 300px !important;
-  }
-  
-  .hero-title {
-    font-size: 1.5rem !important;
-    margin-bottom: 0.5rem !important;
-  }
-  
-  .hero-description {
-    font-size: 0.875rem !important;
-    margin-bottom: 1.25rem !important;
-  }
-  
-  .hero-button {
-    padding: 6px 16px !important;
-    font-size: 0.8rem !important;
-  }
-}
-`;
-
-const HeroSection = () => {
-  // Hardcoded slides for simplicity
-  const slides = [
+  // Fallback slides if none provided
+  const defaultSlides = [
     {
       image: "/images/001_1.jpg",
       title: "Luxor Hand Knotted Rugs",
@@ -58,7 +21,7 @@ const HeroSection = () => {
       link: "/products/hand-knotted",
     },
     {
-      image: "/images/008_1.jpg",
+      image: "/images/008_1.jpg", 
       title: "Hand Knotted Rugs",
       description: "Hand knotted rugs are also known for their luxurious feel. The intricate design and soft pile of the rug can add elegance and sophistication to any space.",
       cta: "View Modern Series",
@@ -71,50 +34,52 @@ const HeroSection = () => {
       cta: "Discover More",
       link: "/luxury-collection",
     },
-    {
-      image: "/images/hand_tuft.jpeg",
-      title: "Hand Tufted Rugs",
-      description: "Experience the perfect harmony of tradition and innovation in every thread.",
-      cta: "Discover More",
-      link: "/products/hand-tufted",
-    },
-    {
-      image: "/images/002_1.jpg",
-      title: "Hand tufted Carpets",
-      description: "Hand tufted carpets come in various shapes, sizes, and designs. They can be made from a wide range of materials.",
-      cta: "Discover More",
-      link: "/products/hand-tufted",
-    },
   ];
-  
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const router = useRouter();
 
-  // Debug image loading
+  const slideData = slides.length > 0 ? slides : defaultSlides;
+
+  // Preload images for better performance
   useEffect(() => {
-    console.log("Current slide image path:", slides[currentSlide].image);
-    
-    // Check if image exists
-    const img = new Image();
-    img.onload = () => console.log("Image loaded successfully");
-    img.onerror = (e) => console.error("Image failed to load:", e);
-    img.src = slides[currentSlide].image;
-  }, [currentSlide]);
+    const preloadImages = async () => {
+      const imagePromises = slideData.map((slide) => {
+        return new Promise((resolve, reject) => {
+          const img = new window.Image();
+          img.onload = () => {
+            setPreloadedImages(prev => new Set([...prev, slide.image]));
+            resolve(slide.image);
+          };
+          img.onerror = reject;
+          img.src = slide.image;
+        });
+      });
 
-  // Auto-advance slides
+      try {
+        await Promise.allSettled(imagePromises);
+        setIsLoaded(true);
+      } catch (error) {
+        console.error('Error preloading images:', error);
+        setIsLoaded(true);
+      }
+    };
+
+    preloadImages();
+  }, [slideData]);
+
+  // Auto-advance slides with pause on hover
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
+      setCurrentSlide((prev) => (prev + 1) % slideData.length);
+    }, 6000); // Slightly longer for better UX
+
     return () => clearInterval(timer);
-  }, [slides.length]);
+  }, [slideData.length]);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
+    setCurrentSlide((prev) => (prev + 1) % slideData.length);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    setCurrentSlide((prev) => (prev - 1 + slideData.length) % slideData.length);
   };
 
   const handleClick = (link) => {
@@ -123,136 +88,109 @@ const HeroSection = () => {
     }
   };
 
-  // Current slide data
-  const currentSlideData = slides[currentSlide];
+  const currentSlideData = slideData[currentSlide];
 
   return (
-    <>
-      {/* Inject responsive styles */}
-      <style jsx global>{responsiveStyles}</style>
-      
-      <div className="relative hero-container" style={{ height: "550px" }}>
-        {/* Basic Image Container */}
-        <div style={{ position: "relative", width: "100%", height: "100%" }}>
-          <img 
+    <section 
+      className="relative w-full h-[300px] md:h-[550px] overflow-hidden"
+      role="banner"
+      aria-label="Hero carousel showcasing premium rugs"
+    >
+      {/* Main Image Container */}
+      <div className="relative w-full h-full">
+        {isLoaded ? (
+          <Image
             src={currentSlideData.image}
-            alt={currentSlideData.title}
-            style={{ 
-              width: "100%", 
-              height: "100%", 
-              objectFit: "cover",
-              position: "absolute",
-              top: 0,
-              left: 0
-            }}
+            alt={`${currentSlideData.title} - Premium handcrafted rugs by Dhruv Rugs International`}
+            fill
+            priority={currentSlide === 0}
+            quality={85}
+            sizes="100vw"
+            className="object-cover"
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkbHB0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
           />
-          
-          {/* Dark Overlay */}
-          <div style={{ 
-            position: "absolute", 
-            top: 0, 
-            left: 0, 
-            width: "100%", 
-            height: "100%", 
-            backgroundColor: "rgba(0,0,0,0.4)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center"
-          }}>
-            {/* Content */}
-            <div style={{ textAlign: "center", color: "white", padding: "0 20px", maxWidth: "800px" }}>
-              <h1 className="hero-title" style={{ fontSize: "2.5rem", fontWeight: "bold", marginBottom: "1rem" }}>
-                {currentSlideData.title}
-              </h1>
-              <p className="hero-description" style={{ fontSize: "1.25rem", marginBottom: "2rem" }}>
-                {currentSlideData.description}
-              </p>
-              <button
-                onClick={() => handleClick(currentSlideData.link)}
-                className="hero-button"
-                style={{ 
-                  backgroundColor: "white", 
-                  color: "#333", 
-                  padding: "10px 24px", 
-                  borderRadius: "50px",
-                  border: "none",
-                  fontSize: "1rem",
-                  fontWeight: "500",
-                  cursor: "pointer"
-                }}
-              >
-                {currentSlideData.cta}
-              </button>
-            </div>
+        ) : (
+          <div className="w-full h-full bg-gray-200 animate-pulse flex items-center justify-center">
+            <div className="text-gray-400">Loading...</div>
+          </div>
+        )}
+        
+        {/* Overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/40" />
+
+        {/* Content Overlay */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-center text-white px-4 max-w-4xl mx-auto">
+            <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
+              {currentSlideData.title}
+            </h1>
+            <p className="text-sm md:text-lg lg:text-xl mb-6 md:mb-8 max-w-2xl mx-auto leading-relaxed">
+              {currentSlideData.description}
+            </p>
+            <button
+              onClick={() => handleClick(currentSlideData.link)}
+              className="inline-flex items-center px-6 md:px-8 py-3 md:py-4 bg-white text-gray-900 font-semibold rounded-full hover:bg-gray-100 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-900"
+              aria-label={`${currentSlideData.cta} - ${currentSlideData.title}`}
+            >
+              {currentSlideData.cta}
+            </button>
           </div>
         </div>
-
-        {/* Navigation Arrows */}
-        <button
-          onClick={prevSlide}
-          style={{ 
-            position: "absolute", 
-            left: "20px", 
-            top: "50%", 
-            transform: "translateY(-50%)",
-            backgroundColor: "rgba(255,255,255,0.8)",
-            borderRadius: "50%",
-            border: "none",
-            padding: "10px",
-            cursor: "pointer",
-            zIndex: 10
-          }}
-        >
-          <ChevronLeft size={24} color="#333" />
-        </button>
-        
-        <button
-          onClick={nextSlide}
-          style={{ 
-            position: "absolute", 
-            right: "20px", 
-            top: "50%", 
-            transform: "translateY(-50%)",
-            backgroundColor: "rgba(255,255,255,0.8)",
-            borderRadius: "50%",
-            border: "none",
-            padding: "10px",
-            cursor: "pointer",
-            zIndex: 10
-          }}
-        >
-          <ChevronRight size={24} color="#333" />
-        </button>
-
-        {/* Slide Indicators */}
-        <div style={{ 
-          position: "absolute", 
-          bottom: "20px", 
-          left: "50%", 
-          transform: "translateX(-50%)",
-          display: "flex",
-          gap: "8px",
-          zIndex: 10
-        }}>
-          {slides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              style={{ 
-                width: currentSlide === index ? "30px" : "10px", 
-                height: "10px", 
-                borderRadius: "50px", 
-                backgroundColor: currentSlide === index ? "white" : "rgba(255,255,255,0.6)",
-                border: "none",
-                padding: 0,
-                cursor: "pointer"
-              }}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
       </div>
-    </>
+
+      {/* Navigation Controls */}
+      <button
+        onClick={prevSlide}
+        className="absolute left-4 top-1/2 -translate-y-1/2 p-2 md:p-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white"
+        aria-label="Previous slide"
+      >
+        <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white" />
+      </button>
+      
+      <button
+        onClick={nextSlide}
+        className="absolute right-4 top-1/2 -translate-y-1/2 p-2 md:p-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white"
+        aria-label="Next slide"
+      >
+        <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white" />
+      </button>
+
+      {/* Slide Indicators */}
+      <div className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+        {slideData.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentSlide(index)}
+            className={`h-2 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white ${
+              currentSlide === index 
+                ? 'w-8 bg-white' 
+                : 'w-2 bg-white/60 hover:bg-white/80'
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+
+      {/* Schema.org structured data for carousel */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ImageGallery",
+            "name": "Premium Rug Collections",
+            "description": "Showcase of handcrafted rugs and carpets",
+            "image": slideData.map(slide => ({
+              "@type": "ImageObject",
+              "url": slide.image,
+              "caption": slide.title,
+              "description": slide.description
+            }))
+          })
+        }}
+      />
+    </section>
   );
 };
 
