@@ -34,7 +34,7 @@ const InstagramWall = ({ collectionsInstagramWall = [] }) => {
         </p>
         <div className="flex justify-center mt-4">
           <a
-            href="https://www.instagram.com/dhruvrugs?igsh=MWE2YTJpMjNoY2NqdA=="
+            href="https://www.instagram.com/dhruvrugs.global?igsh=MWE2YTJpMjNoY2NqdA=="
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-pink-600 hover:text-pink-700 font-medium transition-colors"
@@ -105,7 +105,7 @@ const InstagramWall = ({ collectionsInstagramWall = [] }) => {
       {/* Call to Action */}
       <div className="text-center mt-12">
         <a
-          href="https://www.instagram.com/dhruvrugs?igsh=MWE2YTJpMjNoY2NqdA=="
+          href="https://www.instagram.com/dhruvrugs.global?igsh=MWE2YTJpMjNoY2NqdA=="
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold rounded-full hover:from-pink-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
@@ -139,7 +139,7 @@ const InstagramWall = ({ collectionsInstagramWall = [] }) => {
                 "name": "Dhruv Rugs International"
               },
               "datePublished": new Date().toISOString(),
-              "url": "https://www.instagram.com/dhruvrugs",
+              "url": "https://www.instagram.com/dhruvrugs.global?igsh=MWE2YTJpMjNoY2NqdA==",
               "image": collectionsInstagramWall.map((item, index) => ({
                 "@type": "ImageObject",
                 "url": item.image,

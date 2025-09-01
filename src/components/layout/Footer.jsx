@@ -63,7 +63,7 @@ const Footer = () => {
                 <RiTwitterXFill size={20} />
               </a>
               <a
-                href="https://www.instagram.com/dhruvrugs?igsh=MWE2YTJpMjNoY2NqdA=="
+                href="https://www.instagram.com/dhruvrugs.global?igsh=MWE2YTJpMjNoY2NqdA=="
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-pink-400 transition-colors"
